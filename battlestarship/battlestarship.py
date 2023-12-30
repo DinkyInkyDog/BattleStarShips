@@ -9,8 +9,7 @@ class Board:
         row_a = "| A"
         #I need to have i go through the fleet's locations and know if any of them are in the spaces
         for ship in fleet:
-    def __repr__():
-        print("______________________________________________")
+            pass
        
        
 
