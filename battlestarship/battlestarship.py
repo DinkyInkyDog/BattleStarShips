@@ -5,17 +5,20 @@ letters = "abcdefghi"
 class Board:
     def __init__(self):
         fleet = []
+    def generate_board(self):
+        row_a = "| A"
+        #I need to have i go through the fleet's locations and know if any of them are in the spaces
+        for ship in fleet:
     def __repr__():
         print("______________________________________________")
-        row_a = "| A"
-       #I need to have it go through the fleet's locations and know if any of them are in the spaces
+       
+       
+
+
 def find_index(letter, list=letters):
     index = list.index(letter)
     return index
-#that works.
-#print(find_index("c"))
-print(find_index("a"))
-print(letters[1])
+
 class Ship:
     verticle = True
     location = {}
@@ -52,5 +55,3 @@ testship_1.flip()
 testship_1.assign_ship("a", 4)
 print(testship_1.location)
 
-def print_board():
-    print("")
