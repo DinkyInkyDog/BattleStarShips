@@ -39,7 +39,32 @@ class Board:
         self.enemy = enemy
     def mark_board(self, ship):
         ship.location
-    
+    def __repr__(self, user = True):
+        user_view = user
+        if user_view == True:
+            print(self.top)
+            print(self.row_a)
+            print(self.row_b)
+            print(self.row_c)
+            print(self.row_d)
+            print(self.row_e)
+            print(self.row_f)
+            print(self.row_g)
+            print(self.row_h)
+            print(self.row_i)
+            print(self.bottom)
+        if user_view == False:
+            print(self.e_top)
+            print(self.e_row_a)
+            print(self.e_row_b)
+            print(self.e_row_c)
+            print(self.e_row_d)
+            print(self.e_row_e)
+            print(self.e_row_f)
+            print(self.e_row_g)
+            print(self.e_row_h)
+            print(self.e_row_i)
+            print(self.e_bottom)
        
        
 
