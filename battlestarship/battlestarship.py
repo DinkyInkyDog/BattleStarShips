@@ -7,6 +7,7 @@ letters = "abcdefghi"
 
 #there will be two boards. One for the player and one for the enemy that print seperate and hold their own info
 class Board:
+    #this will be the player's board view
     top = """_________________________________________________________
     |    1    2    3    4    5    6    7    8    9    10    |"""
     row_a = "| A  .    .    .    .    .    .    .    .    .     .    |"
@@ -19,14 +20,26 @@ class Board:
     row_h = "| H  .    .    .    .    .    .    .    .    .     .    |"
     row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
     bottom = "_________________________________________________________"
+    #I need a seperate board for each of the different versions that will happen.
+    #so this next one will be the enemy board view
+    e_top = """_________________________________________________________
+    |    1    2    3    4    5    6    7    8    9    10    |"""
+    e_row_a = "| A  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_b = "| B  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_c = "| C  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_d = "| D  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_e = "| E  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_f = "| F  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_g = "| G  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_h = "| H  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
+    e_bottom = "_________________________________________________________"
     def __init__(self, enemy = False):
         self.fleet = []
         self.enemy = enemy
-    def generate_board(self):
-        row_a = "| A"
-        #I need to have i go through the fleet's locations and know if any of them are in the spaces
-        for ship in fleet:
-            pass
+    def mark_board(self, ship):
+        ship.location
+    
        
        
 
