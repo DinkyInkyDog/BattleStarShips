@@ -55,7 +55,7 @@ class Board:
             index = 0
             for r in self.user_rows:
                 if row_letter in self.user_rows[index]:
-
+                    #from here I need to know what numbers are needed to be marked so I can get the corisponding index for it.
                 else:
                     index += 1
         else:
