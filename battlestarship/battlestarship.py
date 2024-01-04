@@ -20,6 +20,7 @@ class Board:
     row_h = "| H  .    .    .    .    .    .    .    .    .     .    |"
     row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
     bottom = "_________________________________________________________"
+    user_rows = [row_a, row_b, row_c, row_d, row_e, row_f, row_g, row_h, row_i]
     #I need a seperate board for each of the different versions that will happen.
     #so this next one will be the enemy board view
     e_top = """_________________________________________________________
@@ -34,16 +35,32 @@ class Board:
     e_row_h = "| H  .    .    .    .    .    .    .    .    .     .    |"
     e_row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
     e_bottom = "_________________________________________________________"
+    columndict = {1:5, 2:10, 3:15, 4:20, 5:25, 6:30, 7:35, 8:40, 9:45, 10:51}
     def __init__(self, enemy = False):
         self.fleet = {}
         self.enemy = enemy
         
     def mark_board(self, ship, list=letters):
         if ship.verticle == True:
-            row = ship.location.keys()
+            self.fleet[ship.name] = [ship.location.items()]
+            #I need to figure out how to get that key out of the dictionary!!!
+            index = 0
+            row_letter = ""
+            for letter in letters:
+                if letter[index] in ship.location.keys():
+                    row_letter = letter[index]
+                    break
+                else:
+                    index += 1
+            index = 0
+            for r in self.user_rows:
+                if row_letter in self.user_rows[index]:
+
+                else:
+                    index += 1
         else:
             rows = len(ship.location.keys())
-            for row in range(0, rows):
+            
                 
         if self.enemy == False:
             ship.location
@@ -122,3 +139,5 @@ testship_1 = Ship(3)
 testship_1.assign_ship("a", 4)
 print(testship_1.location)
 print(testship_1.name)
+
+player.mark_board(testship_1)
