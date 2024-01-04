@@ -9,7 +9,7 @@ letters = "abcdefghi"
 class Board:
     #this will be the player's board view
     top = """_________________________________________________________
-    |    1    2    3    4    5    6    7    8    9    10    |"""
+|    1    2    3    4    5    6    7    8    9    10    |"""
     row_a = "| A  .    .    .    .    .    .    .    .    .     .    |"
     row_b = "| B  .    .    .    .    .    .    .    .    .     .    |"
     row_c = "| C  .    .    .    .    .    .    .    .    .     .    |"
@@ -23,11 +23,11 @@ class Board:
     #I need a seperate board for each of the different versions that will happen.
     #so this next one will be the enemy board view
     e_top = """_________________________________________________________
-    |    1    2    3    4    5    6    7    8    9    10    |"""
+|    1    2    3    4    5    6    7    8    9    10    |"""
     e_row_a = "| A  .    .    .    .    .    .    .    .    .     .    |"
     e_row_b = "| B  .    .    .    .    .    .    .    .    .     .    |"
     e_row_c = "| C  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_d = "| D  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_d = "| D  .    .    .    .    .    x    .    .    .     .    |"
     e_row_e = "| E  .    .    .    .    .    .    .    .    .     .    |"
     e_row_f = "| F  .    .    .    .    .    .    .    .    .     .    |"
     e_row_g = "| G  .    .    .    .    .    .    .    .    .     .    |"
@@ -39,9 +39,8 @@ class Board:
         self.enemy = enemy
     def mark_board(self, ship):
         ship.location
-    def __repr__(self, user = True):
-        user_view = user
-        if user_view == True:
+    def display(self):
+        if self.enemy == False:
             print(self.top)
             print(self.row_a)
             print(self.row_b)
@@ -53,7 +52,7 @@ class Board:
             print(self.row_h)
             print(self.row_i)
             print(self.bottom)
-        if user_view == False:
+        if self.enemy == True:
             print(self.e_top)
             print(self.e_row_a)
             print(self.e_row_b)
@@ -67,7 +66,8 @@ class Board:
             print(self.e_bottom)
        
        
-
+player = Board()
+enemy = Board(enemy=True)
 
 def find_index(letter, list=letters):
     index = list.index(letter)
@@ -102,6 +102,9 @@ class Ship:
             for mark in range(0, self.size):
                 self.location[letters[index]] = number
                 index += 1
+
+player.display()
+enemy.display()
 
 testship_1 = Ship(3)
 #testship_1.flip()
