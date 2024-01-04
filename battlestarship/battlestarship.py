@@ -38,9 +38,16 @@ class Board:
         self.fleet = {}
         self.enemy = enemy
         
-    def mark_board(self, ship):
-        ship.location
-        self.fleet[ship.name]
+    def mark_board(self, ship, list=letters):
+        if ship.verticle == True:
+            row = ship.location.keys()
+        else:
+            rows = len(ship.location.keys())
+            for row in range(0, rows):
+                
+        if self.enemy == False:
+            ship.location
+
     def display(self):
         if self.enemy == False:
             print(self.top)
