@@ -27,7 +27,7 @@ class Board:
     e_row_a = "| A  .    .    .    .    .    .    .    .    .     .    |"
     e_row_b = "| B  .    .    .    .    .    .    .    .    .     .    |"
     e_row_c = "| C  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_d = "| D  .    .    .    .    .    x    .    .    .     .    |"
+    e_row_d = "| D  .    .    .    .    .    .    .    .    .     .    |"
     e_row_e = "| E  .    .    .    .    .    .    .    .    .     .    |"
     e_row_f = "| F  .    .    .    .    .    .    .    .    .     .    |"
     e_row_g = "| G  .    .    .    .    .    .    .    .    .     .    |"
@@ -35,10 +35,12 @@ class Board:
     e_row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
     e_bottom = "_________________________________________________________"
     def __init__(self, enemy = False):
-        self.fleet = []
+        self.fleet = {}
         self.enemy = enemy
+        
     def mark_board(self, ship):
         ship.location
+        self.fleet[ship.name]
     def display(self):
         if self.enemy == False:
             print(self.top)
@@ -76,11 +78,12 @@ def find_index(letter, list=letters):
 class Ship:
     verticle = True
     location = {}
-    def __init__(self, size, status=True):
+    def __init__(self, size, rank = "(A)", status=True):
         self.size = size
         #The initialized ship is friendly by default, so when making the enemy ships change to false.
         self.friendly = status
-
+        ship_names = ["0", "1", "Scout", "Fighter Jet", "Cargo Ship", "Mothership"]
+        self.name = ship_names[size] + rank
     def flip(self):
         if self.verticle == True:
             self.verticle = False
@@ -103,12 +106,12 @@ class Ship:
                 self.location[letters[index]] = number
                 index += 1
 
-player.display()
-enemy.display()
+#player.display()
+#enemy.display()
 
 testship_1 = Ship(3)
 #testship_1.flip()
 
 testship_1.assign_ship("a", 4)
 print(testship_1.location)
-
+print(testship_1.name)
