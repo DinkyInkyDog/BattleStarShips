@@ -26,12 +26,12 @@ nav {
     padding: 25px 15px 0px 15px;
 }
 
-ul {
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
-li {
+nav ul li {
     display: inline;
     padding: 0px 10px;
 }
@@ -45,10 +45,17 @@ main {
 
 #Mission .container {
     z-index: 2;
+    width: 100%;
     position: absolute;
+    top: 250px;
 
 }
 #Mission img {
     z-index: 1;
     padding: 0px 50px 50px 50px;
+    height: 700px;
 }
+/*Now for the tea of the month
+this one actually uses flexbox so be prepared
+*/
+
