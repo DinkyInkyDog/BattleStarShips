@@ -66,10 +66,10 @@ this one actually uses flexbox so be prepared
     flex-wrap: wrap;
     justify-content: center;
 }
-.item h3 {
+#Tea .container .item h3 {
     margin: 10px;
 }
-.item img {
+#Tea .container .item img {
     height: 200px;
     width: 300px;
     margin: 0px 20px;
