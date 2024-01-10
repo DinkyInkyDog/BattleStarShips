@@ -74,3 +74,27 @@ this one actually uses flexbox so be prepared
     width: 300px;
     margin: 0px 20px;
 }
+
+/*Location Time
+I can't believe I'm still awake doing this*/
+
+#Location h2 {
+    position: absolute;
+    z-index: 2;
+    top: 200px;
+}
+
+
+#Location .container {
+    position: absolute;
+    z-index: 2;
+
+}
+
+
+#Location img {
+    z-index: 1;
+    height: 500px;
+    
+    padding: 0px 50px 50px 0px;
+}
