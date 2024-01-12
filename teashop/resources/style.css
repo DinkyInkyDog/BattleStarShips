@@ -116,9 +116,11 @@ I can't believe I'm still awake doing this*/
 }
 
 footer {
-    z-index: 4;
+    position: relative;
+    top: 70px;
     
 }
 footer h5 {
     text-align: left;
+    padding: 20px;
 }
