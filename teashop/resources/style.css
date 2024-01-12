@@ -87,7 +87,7 @@ I can't believe I'm still awake doing this*/
 #Locations .title h2 {
     background: rgba(0,0,0,0);
     position: absolute;
-    
+    left: 500px;
     bottom: 600px;
 }
 
@@ -96,6 +96,7 @@ I can't believe I'm still awake doing this*/
     z-index: 2;
     display: inline-flex;
     bottom: 290px;
+    right: 130px;
     background: rgba(0,0,0,0);
     
 }
@@ -112,4 +113,12 @@ I can't believe I'm still awake doing this*/
     padding: 50px 50px 50px 0px;
     overflow: hidden;
    
+}
+
+footer {
+    z-index: 4;
+    
+}
+footer h5 {
+    text-align: left;
 }
