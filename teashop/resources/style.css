@@ -78,23 +78,31 @@ this one actually uses flexbox so be prepared
 /*Location Time
 I can't believe I'm still awake doing this*/
 
-#Location h2 {
+#Locations h2 {
+    background: rgba(0,0,0,0);
+    
+}
+
+#Locations .container {
     position: absolute;
     z-index: 2;
-    top: 200px;
+    display: inline-flex;
+    bottom: 290px;
+    
+    background: rgba(0,0,0,0);
+    
+}
+#Locations .container .item {
+    width: 300px;
+    margin: 15px 20px;
+    
 }
 
 
-#Location .container {
-    position: absolute;
-    z-index: 2;
-
-}
-
-
-#Location img {
+#Locations .imageframe {
     z-index: 1;
     height: 500px;
-    
-    padding: 0px 50px 50px 0px;
+    padding: 50px 50px 50px 0px;
+    overflow: hidden;
+   
 }
