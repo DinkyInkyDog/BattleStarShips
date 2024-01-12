@@ -87,16 +87,21 @@ I can't believe I'm still awake doing this*/
 #Locations .title h2 {
     background: rgba(0,0,0,0);
     position: absolute;
-    left: 500px;
-    bottom: 600px;
+    
+    
 }
 
 #Locations .container {
+    float: left;
     position: absolute;
     z-index: 2;
     display: inline-flex;
-    bottom: 290px;
-    right: 130px;
+    height: 500px;
+    width: 1000px;
+    align-items: center;
+    justify-content: center;
+    
+    bottom: 200px;
     background: rgba(0,0,0,0);
     
 }
