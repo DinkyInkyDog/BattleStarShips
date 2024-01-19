@@ -4,21 +4,22 @@
 
 #don't get rid of that. I really need those letters.
 letters = "abcdefghi"
-
+def swap_symbol(string, index):
+    minus_string = string
 #there will be two boards. One for the player and one for the enemy that print seperate and hold their own info
 class Board:
     #this will be the player's board view
     top = """_________________________________________________________
 |    1    2    3    4    5    6    7    8    9    10    |"""
-    row_a = "| A  .    .    .    .    .    .    .    .    .     .    |"
-    row_b = "| B  .    .    .    .    .    .    .    .    .     .    |"
-    row_c = "| C  .    .    .    .    .    .    .    .    .     .    |"
-    row_d = "| D  .    .    .    .    .    .    .    .    .     .    |"
-    row_e = "| E  .    .    .    .    .    .    .    .    .     .    |"
-    row_f = "| F  .    .    .    .    .    .    .    .    .     .    |"
-    row_g = "| G  .    .    .    .    .    .    .    .    .     .    |"
-    row_h = "| H  .    .    .    .    .    .    .    .    .     .    |"
-    row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
+    row_a = [ "| A", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_b = [ "| B", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_c = [ "| C", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_d = [ "| D", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_e = [ "| E", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_f = [ "| F", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_g = [ "| G", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_h = [ "| H", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    row_i = [ "| I", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
     bottom = "_________________________________________________________"
     user_rows = [row_a, row_b, row_c, row_d, row_e, row_f, row_g, row_h, row_i]
     #I need a seperate board for each of the different versions that will happen.
@@ -35,7 +36,7 @@ class Board:
     e_row_h = "| H  .    .    .    .    .    .    .    .    .     .    |"
     e_row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
     e_bottom = "_________________________________________________________"
-    columndict = {1:5, 2:10, 3:15, 4:20, 5:25, 6:30, 7:35, 8:40, 9:45, 10:51}
+    #columndict = {1:5, 2:10, 3:15, 4:20, 5:25, 6:30, 7:35, 8:40, 9:45, 10:51}
     def __init__(self, enemy = False):
         self.fleet = {}
         self.enemy = enemy
@@ -45,30 +46,27 @@ class Board:
             self.fleet[ship.name] = [str(ship.location.items())]
             index = 0
             row_letter = " "
-            column_numbers = []
+            
             for letter in letters:
                 if letters[index] in ship.location.keys():
                     row_letter = letters[index]
                     break
                 else:
                     index += 1
-            index_2 = 0
+            
             numbers_list = [value for sublist in ship.location.values() for value in sublist]
-            for number in range(0, len(numbers_list)):
-                column_numbers.append(numbers_list[index_2])
-                index_2 += 1
             #print(numbers_list)
-            #print(row_letter)
-            #print(column_numbers)   
+            #print(row_letter)   
             #Tested and This ^ half of the code works
             if self.enemy == False:
                 i = letters.find(row_letter)
                 row = self.user_rows[i]
                 index_3 = 0
                 for number in range(0, len(numbers_list)):
-                    column = self.columndict[column_numbers[index_3]]
-                    self.user_rows[i] = row.replace(row[column], 'o')
-                    print(column)
+                    #column = self.columndict[column_numbers[index_3]]
+                    row.pop(numbers_list[index_3])
+                    row.insert(numbers_list[index_3], "  o  ")
+                    print(row)
                     index_3 += 1
                 print(self.user_rows[i])
                 
@@ -81,7 +79,7 @@ class Board:
         if self.enemy == False:
             ship.location
 
-    def display(self):
+    #def display(self):
         if self.enemy == False:
             print(self.top)
             print(self.row_a)
