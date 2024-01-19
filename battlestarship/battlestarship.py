@@ -42,24 +42,28 @@ class Board:
         
     def mark_board(self, ship, list=letters):
         if ship.verticle == True:
-            self.fleet[ship.name] = [ship.location.items()]
-            #I need to figure out how to get that key out of the dictionary!!!
+            self.fleet[ship.name] = [str(ship.location.items())]
             index = 0
-            row_letter = ""
+            row_letter = " "
+            column_numbers = []
             for letter in letters:
-                if letter[index] in ship.location.keys():
-                    row_letter = letter[index]
+                if letters[index] in ship.location.keys():
+                    row_letter = letters[index]
                     break
                 else:
                     index += 1
-            index = 0
-            for r in self.user_rows:
-                if row_letter.upper() in self.user_rows[index]:
-                    #from here I need to know what numbers are needed to be marked so I can get the corisponding index for it.
-                else:
-                    index += 1
+            index_2 = 0
+            numbers_list = [value for sublist in ship.location.values() for value in sublist]
+            for number in range(0, len(numbers_list)):
+                
+                column_numbers.append(numbers_list[index_2])
+                index_2 += 1
+            print(numbers_list)
+            print(row_letter)
+            print(column_numbers)   
         else:
-            rows = len(ship.location.keys())
+            row_letters = []
+            column_number = 0
             
                 
         if self.enemy == False:
