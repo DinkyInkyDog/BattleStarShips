@@ -67,10 +67,12 @@ class Board:
                 index_3 = 0
                 for number in range(0, len(numbers_list)):
                     column = self.columndict[column_numbers[index_3]]
-                    row.replace(row[column], 'o')
-                    index += 1
-                print(row)
-                print(column)
+                    self.user_rows[i] = row.replace(row[column], 'o')
+                    print(column)
+                    index_3 += 1
+                print(self.user_rows[i])
+                
+                
         else:
             row_letters = []
             column_number = 0
