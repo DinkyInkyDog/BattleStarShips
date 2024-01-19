@@ -55,12 +55,22 @@ class Board:
             index_2 = 0
             numbers_list = [value for sublist in ship.location.values() for value in sublist]
             for number in range(0, len(numbers_list)):
-                
                 column_numbers.append(numbers_list[index_2])
                 index_2 += 1
-            print(numbers_list)
-            print(row_letter)
-            print(column_numbers)   
+            #print(numbers_list)
+            #print(row_letter)
+            #print(column_numbers)   
+            #Tested and This ^ half of the code works
+            if self.enemy == False:
+                i = letters.find(row_letter)
+                row = self.user_rows[i]
+                index_3 = 0
+                for number in range(0, len(numbers_list)):
+                    column = self.columndict[column_numbers[index_3]]
+                    row.replace(row[column], 'o')
+                    index += 1
+                print(row)
+                print(column)
         else:
             row_letters = []
             column_number = 0
