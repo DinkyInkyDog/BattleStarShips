@@ -58,7 +58,8 @@ class Board:
 
     def mark_board(self, ship, list=letters):
         if ship.verticle == True:
-            self.fleet[ship.name] = [str(ship.location.items())]
+            
+            self.fleet[ship.name] = [item for sublist in ship.location.items() for item in sublist]
             index = 0
             row_letter = " "
             
@@ -85,7 +86,7 @@ class Board:
                 
                 
         else:
-            self.fleet[ship.name] = [str(ship.location.items())]
+            self.fleet[ship.name] = [item for sublist in ship.location.items() for item in sublist]
             index = 0
             row_letters = []
             for letter in letters:
@@ -108,7 +109,10 @@ class Board:
                     index_2 += 1
             self.display()
 
-    #         
+    def attack(self, row, column, board_being_attacked):
+        pass
+        
+
 
 
        
@@ -122,13 +126,15 @@ def find_index(letter, list=letters):
 
 class Ship:
     verticle = True
-    location = {}
+    
     def __init__(self, size, rank = "(A)", status=True):
+        self.location = {}
         self.size = size
         #The initialized ship is friendly by default, so when making the enemy ships change to false.
         self.friendly = status
         ship_names = ["0", "1", "Scout", "Fighter Jet", "Cargo Ship", "Mothership"]
         self.name = ship_names[size] + rank
+        self.health = size
     def flip(self):
         if self.verticle == True:
             self.verticle = False
@@ -156,9 +162,13 @@ class Ship:
 
 testship_1 = Ship(3)
 #testship_1.flip()
+enemytest_ship_1 = Ship(2)
 
 testship_1.assign_ship("a", 4)
-
+enemytest_ship_1.assign_ship("d", 6)
 
 
 player.mark_board(testship_1)
+print(player.fleet)
+enemy.mark_board(enemytest_ship_1)
+print(enemytest_ship_1.location)
