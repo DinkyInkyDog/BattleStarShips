@@ -80,12 +80,20 @@ class Board:
                     index += 1
                 else:
                     index += 1
-            column_number = []
+            column_number = 0
             for num in ship.location.values():
-                if num not in column_number:
-                    column_number.append(num)
+                    column_number = num
             #Tested and works beautifully
             #print(column_number)
+            if self.enemy == False:
+                index_2 = 0
+                for row in range(0, len(row_letters)):
+                    i = letters.find(row_letters[index_2])
+                    row = self.user_rows[i]
+                    row.pop(column_number)
+                    row.insert(column_number, "  o  ")
+                    print(row)
+                    index_2 += 1
             
              
                 
