@@ -109,8 +109,38 @@ class Board:
                     index_2 += 1
             self.display()
 
-    def attack(self, row, column, board_being_attacked):
-        pass
+    def attack(self, row, column, board_being_attacked, letters=letters):
+        values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
+        if row in values and column in values:
+            if self.enemy == False:
+                i = letters.find(row)
+                row= board_being_attacked.enemy_rows[i]
+                row.pop(column)
+                row.insert(column, "  X  ")
+                board_being_attacked.display()
+                print("you hit!")
+            else:
+                i = letters.find(row)
+                row= board_being_attacked.user_rows[i]
+                row.pop(column)
+                row.insert(column, "  X  ")
+                board_being_attacked.display()
+                print("you've been hit!")
+        else:
+            if self.enemy == True:
+                i = letters.find(row)
+                row= board_being_attacked.user_rows[i]
+                row.pop(column)
+                row.insert(column, "  ,  ")
+                board_being_attacked.display()
+                print("miss")
+            else:
+                i = letters.find(row)
+                row= board_being_attacked.enemy_rows[i]
+                row.pop(column)
+                row.insert(column, "  o  ")
+                board_being_attacked.display()
+                print("miss") 
         
 
 
@@ -191,5 +221,6 @@ enemytest_ship_1.assign_ship("d", 6, True)
 
 #player.mark_board(testship_1)
 #print(player.fleet)
-#enemy.mark_board(enemytest_ship_1)
+enemy.mark_board(enemytest_ship_1)
 #print(enemytest_ship_1.location)
+player.attack("d", 7, enemy)
