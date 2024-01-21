@@ -40,7 +40,29 @@ class Board:
     def __init__(self, enemy = False):
         self.fleet = {}
         self.enemy = enemy
-        
+
+    def display(self):
+        if self.enemy == False:
+            print(self.top)
+            for row in self.user_rows:
+                full = ''
+                for part in row:
+                    full += part
+                print(row)
+            print(self.bottom)
+        if self.enemy == True:
+            print(self.e_top)
+            print(self.e_row_a)
+            print(self.e_row_b)
+            print(self.e_row_c)
+            print(self.e_row_d)
+            print(self.e_row_e)
+            print(self.e_row_f)
+            print(self.e_row_g)
+            print(self.e_row_h)
+            print(self.e_row_i)
+            print(self.e_bottom) 
+
     def mark_board(self, ship, list=letters):
         if ship.verticle == True:
             self.fleet[ship.name] = [str(ship.location.items())]
@@ -68,6 +90,7 @@ class Board:
                     print(row)
                     index_3 += 1
                 print(self.user_rows[i])
+            self.display()
                 
                 
         else:
@@ -92,39 +115,14 @@ class Board:
                     row = self.user_rows[i]
                     row.pop(column_number)
                     row.insert(column_number, "  o  ")
-                    print(row)
                     index_2 += 1
-            
+            self.display()
              
                 
         if self.enemy == False:
             ship.location
 
-    def display(self):
-        if self.enemy == False:
-            print(self.top)
-            print(self.row_a)
-            print(self.row_b)
-            print(self.row_c)
-            print(self.row_d)
-            print(self.row_e)
-            print(self.row_f)
-            print(self.row_g)
-            print(self.row_h)
-            print(self.row_i)
-            print(self.bottom)
-        if self.enemy == True:
-            print(self.e_top)
-            print(self.e_row_a)
-            print(self.e_row_b)
-            print(self.e_row_c)
-            print(self.e_row_d)
-            print(self.e_row_e)
-            print(self.e_row_f)
-            print(self.e_row_g)
-            print(self.e_row_h)
-            print(self.e_row_i)
-            print(self.e_bottom)
+
        
        
 player = Board()
