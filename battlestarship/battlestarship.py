@@ -63,7 +63,6 @@ class Board:
                 row = self.user_rows[i]
                 index_3 = 0
                 for number in range(0, len(numbers_list)):
-                    #column = self.columndict[column_numbers[index_3]]
                     row.pop(numbers_list[index_3])
                     row.insert(numbers_list[index_3], "  o  ")
                     print(row)
@@ -72,14 +71,28 @@ class Board:
                 
                 
         else:
+            self.fleet[ship.name] = [str(ship.location.items())]
+            index = 0
             row_letters = []
-            column_number = 0
+            for letter in letters:
+                if letters[index] in ship.location.keys():
+                    row_letters.append(letters[index])
+                    index += 1
+                else:
+                    index += 1
+            column_number = []
+            for num in ship.location.values():
+                if num not in column_number:
+                    column_number.append(num)
+            #Tested and works beautifully
+            #print(column_number)
             
+             
                 
         if self.enemy == False:
             ship.location
 
-    #def display(self):
+    def display(self):
         if self.enemy == False:
             print(self.top)
             print(self.row_a)
@@ -148,10 +161,10 @@ class Ship:
 #enemy.display()
 
 testship_1 = Ship(3)
-#testship_1.flip()
+testship_1.flip()
 
 testship_1.assign_ship("a", 4)
 print(testship_1.location)
-print(testship_1.name)
+
 
 player.mark_board(testship_1)
