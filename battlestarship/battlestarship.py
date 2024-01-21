@@ -26,17 +26,17 @@ class Board:
     #so this next one will be the enemy board view
     e_top = """_________________________________________________________
 |    1    2    3    4    5    6    7    8    9    10    |"""
-    e_row_a = "| A  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_b = "| B  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_c = "| C  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_d = "| D  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_e = "| E  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_f = "| F  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_g = "| G  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_h = "| H  .    .    .    .    .    .    .    .    .     .    |"
-    e_row_i = "| I  .    .    .    .    .    .    .    .    .     .    |"
+    e_row_a = [ "| A", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_b = [ "| B", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_c = [ "| C", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_d = [ "| D", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_e = [ "| E", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_f = [ "| F", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_g = [ "| G", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_h = [ "| H", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
+    e_row_i = [ "| I", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
     e_bottom = "_________________________________________________________"
-    #columndict = {1:5, 2:10, 3:15, 4:20, 5:25, 6:30, 7:35, 8:40, 9:45, 10:51}
+    enemy_rows = [e_row_a, e_row_b, e_row_c, e_row_d, e_row_e, e_row_f, e_row_g, e_row_h, e_row_i]
     def __init__(self, enemy = False):
         self.fleet = {}
         self.enemy = enemy
@@ -47,22 +47,17 @@ class Board:
             for row in self.user_rows:
                 full = ''
                 for part in row:
-                    full += part
-                print(row)
+                    full += str(part)
+                print(full)
             print(self.bottom)
-        #Now I'm trying to get this working. For whatever reason the lists are staying as list parts.
-        #i need them to be more like a regular string. 
+        #tested and it work!! ^ 
         if self.enemy == True:
             print(self.e_top)
-            print(self.e_row_a)
-            print(self.e_row_b)
-            print(self.e_row_c)
-            print(self.e_row_d)
-            print(self.e_row_e)
-            print(self.e_row_f)
-            print(self.e_row_g)
-            print(self.e_row_h)
-            print(self.e_row_i)
+            for row in self.enemy_rows:
+                full = ''
+                for part in row:
+                    full += str(part)
+                print(full)
             print(self.e_bottom) 
 
     def mark_board(self, ship, list=letters):
@@ -169,7 +164,7 @@ class Ship:
 #enemy.display()
 
 testship_1 = Ship(3)
-testship_1.flip()
+#testship_1.flip()
 
 testship_1.assign_ship("a", 4)
 print(testship_1.location)
