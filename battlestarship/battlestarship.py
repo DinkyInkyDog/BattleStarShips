@@ -50,6 +50,8 @@ class Board:
                     full += part
                 print(row)
             print(self.bottom)
+        #Now I'm trying to get this working. For whatever reason the lists are staying as list parts.
+        #i need them to be more like a regular string. 
         if self.enemy == True:
             print(self.e_top)
             print(self.e_row_a)
