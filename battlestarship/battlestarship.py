@@ -141,21 +141,42 @@ class Ship:
         else:
             self.verticle = True
 
-    def assign_ship(self, letter, number, list=letters):
+    def assign_ship(self, letter, number, up = False, list=letters):
         if self.verticle == True:
-            add = 0
-            for mark in range(0, self.size):
-                if letter not in self.location:
-                    self.location[letter] = [number]
+            if self.size + number > 10:
+                print("------------------Failed to asign----------------------")
+                print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                return False
+            else:
+                add = 0
+                for mark in range(0, self.size):
+                    if letter not in self.location:
+                        self.location[letter] = [number]
+                        add += 1
+                        continue
+                    self.location[letter].append(number + add)
                     add += 1
-                    continue
-                self.location[letter].append(number + add)
-                add += 1
         else:
-            index = find_index(letter)
-            for mark in range(0, self.size):
-                self.location[letters[index]] = number
-                index += 1
+            if up == False:
+                index = find_index(letter)
+                if index + self.size > len(letters):
+                    print("------------------Failed to asign----------------------")
+                    print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                    return False
+                else:
+                    for mark in range(0, self.size):
+                        self.location[letters[index]] = number
+                        index += 1
+            else:
+                index = find_index(letter)
+                if index - self.size < 0:
+                    print("------------------Failed to asign----------------------")
+                    print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                    return False
+                else:
+                    for mark in range(0, self.size):
+                        self.location[letters[index]] = number
+                        index -= 1
 
 #player.display()
 #enemy.display()
@@ -163,12 +184,12 @@ class Ship:
 testship_1 = Ship(3)
 #testship_1.flip()
 enemytest_ship_1 = Ship(2)
-
+enemytest_ship_1.flip()
 testship_1.assign_ship("a", 4)
-enemytest_ship_1.assign_ship("d", 6)
+enemytest_ship_1.assign_ship("d", 6, True)
 
 
-player.mark_board(testship_1)
-print(player.fleet)
-enemy.mark_board(enemytest_ship_1)
-print(enemytest_ship_1.location)
+#player.mark_board(testship_1)
+#print(player.fleet)
+#enemy.mark_board(enemytest_ship_1)
+#print(enemytest_ship_1.location)
