@@ -1,14 +1,9 @@
 
-#I don't need this now But I might later.
-#player_board = {"a": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "b": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "c": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "d": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "e": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "f": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "g": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "h": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "i": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
 
-#don't get rid of that. I really need those letters.
+#don't get rid of that.\/ I really need those letters.
 letters = "abcdefghi"
-def swap_symbol(string, index):
-    minus_string = string
 #there will be two boards. One for the player and one for the enemy that print seperate and hold their own info
 class Board:
-    #this will be the player's board view
     top = """_________________________________________________________
 |    1    2    3    4    5    6    7    8    9    10    |"""
     row_a = [ "| A", "  .  ", "  .  ", "  .  ","  .  ", "  .  ", "  .  ", "  .  ", "  .  ","  .  ", "   .  ", "  |"]
@@ -51,6 +46,7 @@ class Board:
                 print(full)
             print(self.bottom)
         #tested and it work!! ^ 
+        #for now I have the enemy one displaying the same but that won't be the case moving forward.
         if self.enemy == True:
             print(self.e_top)
             for row in self.enemy_rows:
@@ -74,9 +70,7 @@ class Board:
                     index += 1
             
             numbers_list = [value for sublist in ship.location.values() for value in sublist]
-            #print(numbers_list)
-            #print(row_letter)   
-            #Tested and This ^ half of the code works
+            
             if self.enemy == False:
                 i = letters.find(row_letter)
                 row = self.user_rows[i]
@@ -103,8 +97,7 @@ class Board:
             column_number = 0
             for num in ship.location.values():
                     column_number = num
-            #Tested and works beautifully
-            #print(column_number)
+           
             if self.enemy == False:
                 index_2 = 0
                 for row in range(0, len(row_letters)):
@@ -114,10 +107,8 @@ class Board:
                     row.insert(column_number, "  o  ")
                     index_2 += 1
             self.display()
-             
-                
-        if self.enemy == False:
-            ship.location
+
+    #         
 
 
        
@@ -167,7 +158,7 @@ testship_1 = Ship(3)
 #testship_1.flip()
 
 testship_1.assign_ship("a", 4)
-print(testship_1.location)
+
 
 
 player.mark_board(testship_1)
