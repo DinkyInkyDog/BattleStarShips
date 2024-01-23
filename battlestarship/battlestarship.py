@@ -59,7 +59,7 @@ class Board:
     def mark_board(self, ship, list=letters):
         if ship.verticle == True:
             
-            self.fleet[ship.name] = [item for sublist in ship.location.items() for item in sublist]
+            self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
             index = 0
             row_letter = " "
             
@@ -86,7 +86,7 @@ class Board:
                 
                 
         else:
-            self.fleet[ship.name] = [item for sublist in ship.location.items() for item in sublist]
+            self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
             index = 0
             row_letters = []
             for letter in letters:
@@ -141,7 +141,7 @@ class Board:
                 row.insert(column, "  o  ")
                 board_being_attacked.display()
                 print("miss") 
-        
+        #Okay so marking the board works. Just need to damage the ship.
 
 
 
