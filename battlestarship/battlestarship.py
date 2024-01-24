@@ -114,8 +114,9 @@ class Board:
             #self.display()
 
     def attack(self, r, c, board_being_attacked, letters=letters):
-        values = [value for sublist in board_being_attacked.fleet.values() for value in sublist for item in value]
+        values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
         print(values)
+        #prints the location as ['d', [6, 7]] making it so the code can't get at the 6 or 7 making the attack miss
         hit = False
         if r in values and c in values:
             hit = True
