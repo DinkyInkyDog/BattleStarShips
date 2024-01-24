@@ -114,7 +114,7 @@ class Board:
             #self.display()
 
     def attack(self, r, c, board_being_attacked, letters=letters):
-        values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
+        values = [value for sublist in board_being_attacked.fleet.values() for value in sublist for item in value]
         print(values)
         hit = False
         if r in values and c in values:
