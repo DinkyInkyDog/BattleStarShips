@@ -84,8 +84,8 @@ class Board:
                     row.insert(numbers_list[index_3], "  o  ")
                     print(row)
                     index_3 += 1
-                print(self.user_rows[i])
-            self.display()
+                #print(self.user_rows[i])
+            #self.display()
                 
                 
         else:
@@ -111,45 +111,50 @@ class Board:
                     row.pop(column_number)
                     row.insert(column_number, "  o  ")
                     index_2 += 1
-            self.display()
+            #self.display()
 
-    def attack(self, row, column, board_being_attacked, letters=letters):
+    def attack(self, r, c, board_being_attacked, letters=letters):
         values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
+        print(values)
         hit = False
-        if row in values and column in values:
+        if r in values and c in values:
             hit = True
             if self.enemy == False:
-                i = letters.find(row)
+                i = letters.find(r)
                 row= board_being_attacked.enemy_rows[i]
-                row.pop(column)
-                row.insert(column, "  X  ")
+                row.pop(c)
+                row.insert(c, "  X  ")
                 board_being_attacked.display()
                 print("you hit!")
             else:
-                i = letters.find(row)
+                i = letters.find(r)
                 row= board_being_attacked.user_rows[i]
-                row.pop(column)
-                row.insert(column, "  X  ")
+                row.pop(c)
+                row.insert(c, "  X  ")
                 board_being_attacked.display()
                 print("you've been hit!")
         else:
             if self.enemy == True:
-                i = letters.find(row)
+                i = letters.find(r)
                 row= board_being_attacked.user_rows[i]
-                row.pop(column)
-                row.insert(column, "  ,  ")
+                row.pop(c)
+                row.insert(c, "  ,  ")
                 board_being_attacked.display()
                 print("miss")
             else:
-                i = letters.find(row)
+                i = letters.find(r)
                 row= board_being_attacked.enemy_rows[i]
-                row.pop(column)
-                row.insert(column, "  o  ")
+                row.pop(c)
+                row.insert(c, "  o  ")
                 board_being_attacked.display()
                 print("miss") 
         #Okay so marking the board works. Just need to damage the ship.
         if hit == True:
-            board_being_attacked.keys()[board_being_attacked.values().index()]
+            for ship in board_being_attacked.ships:
+                print(ship)
+                if ship.location.get(r, False) != True:
+                    n = ship.location[r]
+                    
 
 
        
@@ -223,14 +228,13 @@ class Ship:
 testship_1 = Ship(3)
 #testship_1.flip()
 enemytest_ship_1 = Ship(2)
-enemytest_ship_1.flip()
+
 testship_1.assign_ship("a", 4)
 enemytest_ship_1.assign_ship("d", 6, True)
-
+print(enemytest_ship_1.location)
 
 #player.mark_board(testship_1)
 #print(player.fleet)
 enemy.mark_board(enemytest_ship_1)
 #print(enemytest_ship_1.location)
-player.attack("d", 7, enemy)
-print(enemy.ships)
+player.attack("d", 6, enemy)
