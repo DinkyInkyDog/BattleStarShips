@@ -35,6 +35,9 @@ class Board:
     def __init__(self, enemy = False):
         self.fleet = {}
         self.enemy = enemy
+        self.ships = []
+#That list in ships is for the attack function to easily find the ships that are included in the board.
+# I didn't want to mess with the fleet because a bunch of functions use that and I don't want to mess them up.
 
     def display(self):
         if self.enemy == False:
@@ -58,7 +61,7 @@ class Board:
 
     def mark_board(self, ship, list=letters):
         if ship.verticle == True:
-            
+            self.ships.append(ship)
             self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
             index = 0
             row_letter = " "
@@ -86,6 +89,7 @@ class Board:
                 
                 
         else:
+            self.ships.append(ship)
             self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
             index = 0
             row_letters = []
@@ -111,7 +115,9 @@ class Board:
 
     def attack(self, row, column, board_being_attacked, letters=letters):
         values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
+        hit = False
         if row in values and column in values:
+            hit = True
             if self.enemy == False:
                 i = letters.find(row)
                 row= board_being_attacked.enemy_rows[i]
@@ -142,7 +148,8 @@ class Board:
                 board_being_attacked.display()
                 print("miss") 
         #Okay so marking the board works. Just need to damage the ship.
-
+        if hit == True:
+            board_being_attacked.keys()[board_being_attacked.values().index()]
 
 
        
@@ -207,6 +214,8 @@ class Ship:
                     for mark in range(0, self.size):
                         self.location[letters[index]] = number
                         index -= 1
+    def __repr__(self):
+        return self.name
 
 #player.display()
 #enemy.display()
@@ -224,3 +233,4 @@ enemytest_ship_1.assign_ship("d", 6, True)
 enemy.mark_board(enemytest_ship_1)
 #print(enemytest_ship_1.location)
 player.attack("d", 7, enemy)
+print(enemy.ships)
