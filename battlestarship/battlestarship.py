@@ -159,7 +159,8 @@ class Board:
         #Okay so marking the board works. Just need to damage the ship.
         if hit == True:
             for ship in board_being_attacked.ships:
-                print(ship)
+                #print(ship)
+                #print(ship.health)
                 if ship.location.get(r, False) != False:
                     n = ship.location[r]
                     if isinstance(n, list):
@@ -169,7 +170,10 @@ class Board:
                     else:
                         if n == c:
                             ship.take_damage()
-                
+                if ship.alive == False:
+                    board_being_attacked.ships.remove(ship)
+                print(board_being_attacked.ships)
+            
                     
 
 
@@ -235,7 +239,7 @@ class Ship:
                     for mark in range(0, self.size):
                         self.location[letters[index]] = number
                         index -= 1
-    def take_damamge(self):
+    def take_damage(self):
         self.health -= 1
         if self.health <= 0:
             self.alive = False
@@ -249,6 +253,8 @@ class Ship:
 testship_1 = Ship(3)
 #testship_1.flip()
 enemytest_ship_1 = Ship(2)
+enemytest_ship_1.health = 1
+
 enemytest_ship_2 = Ship(4)
 enemytest_ship_2.flip()
 enemytest_ship_3 = Ship(3)
@@ -263,4 +269,6 @@ enemy.mark_board(enemytest_ship_1)
 enemy.mark_board(enemytest_ship_2)
 enemy.mark_board(enemytest_ship_3)
 #print(enemytest_ship_1.location)
+
+
 player.attack("d", 6, enemy)
