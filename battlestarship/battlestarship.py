@@ -115,7 +115,7 @@ class Board:
 
     def attack(self, r, c, board_being_attacked, letters=letters):
         values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
-        print(values)
+        
         list_values = []
         for item in values:
             if isinstance(item, list):
@@ -124,10 +124,8 @@ class Board:
             else:
                 list_values.append(item)
 
-        print(list_values)
-        #prints the location as ['d', [6, 7]] making it so the code can't get at the 6 or 7 making the attack miss
         hit = False
-        if r in values and c in values:
+        if r in list_values and c in list_values:
             hit = True
             if self.enemy == False:
                 i = letters.find(r)
@@ -162,8 +160,16 @@ class Board:
         if hit == True:
             for ship in board_being_attacked.ships:
                 print(ship)
-                if ship.location.get(r, False) != True:
+                if ship.location.get(r, False) != False:
                     n = ship.location[r]
+                    if isinstance(n, list):
+                        for number in n:
+                            if number == c:
+                                ship.take_damage()
+                    else:
+                        if n == c:
+                            ship.take_damage()
+                
                     
 
 
@@ -178,7 +184,7 @@ def find_index(letter, list=letters):
 
 class Ship:
     verticle = True
-    
+    alive = True
     def __init__(self, size, rank = "(A)", status=True):
         self.location = {}
         self.size = size
@@ -229,6 +235,11 @@ class Ship:
                     for mark in range(0, self.size):
                         self.location[letters[index]] = number
                         index -= 1
+    def take_damamge(self):
+        self.health -= 1
+        if self.health <= 0:
+            self.alive = False
+
     def __repr__(self):
         return self.name
 
