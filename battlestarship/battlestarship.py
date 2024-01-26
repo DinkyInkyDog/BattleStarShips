@@ -170,9 +170,7 @@ class Board:
                     else:
                         if n == c:
                             ship.take_damage()
-                if ship.alive == False:
-                    board_being_attacked.ships.remove(ship)
-                print(board_being_attacked.ships)
+               
             
                     
 
