@@ -145,7 +145,7 @@ class Board:
                 i = letters.find(r)
                 row= board_being_attacked.user_rows[i]
                 row.pop(c)
-                row.insert(c, "  ,  ")
+                row.insert(c, "  *  ")
                 board_being_attacked.display()
                 print("miss")
             else:
@@ -263,7 +263,8 @@ testship_1.assign_ship("a", 4)
 enemytest_ship_1.assign_ship("d", 6, True)
 enemytest_ship_2.assign_ship("a", 3)
 enemytest_ship_3.assign_ship("b", 6)
-#player.mark_board(testship_1)
+
+player.mark_board(testship_1)
 #print(player.fleet)
 enemy.mark_board(enemytest_ship_1)
 enemy.mark_board(enemytest_ship_2)
