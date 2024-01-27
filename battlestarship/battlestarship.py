@@ -252,30 +252,28 @@ class Ship:
     def __repr__(self):
         return self.name
 
-#player.display()
-#enemy.display()
 
-testship_1 = Ship(3)
+#testship_1 = Ship(3)
 #testship_1.flip()
-enemytest_ship_1 = Ship(2)
-enemytest_ship_1.health = 1
+#enemytest_ship_1 = Ship(2)
+#enemytest_ship_1.health = 1
 
-enemytest_ship_2 = Ship(4)
-enemytest_ship_2.flip()
-enemytest_ship_3 = Ship(3)
+#enemytest_ship_2 = Ship(4)
+#enemytest_ship_2.flip()
+#enemytest_ship_3 = Ship(3)
 
-testship_1.assign_ship("a", 4)
-enemytest_ship_1.assign_ship("d", 6, True)
-enemytest_ship_2.assign_ship("a", 3)
-enemytest_ship_3.assign_ship("b", 6)
+#testship_1.assign_ship("a", 4)
+#enemytest_ship_1.assign_ship("d", 6, True)
+#enemytest_ship_2.assign_ship("a", 3)
+# enemytest_ship_3.assign_ship("b", 6)
 
-player.mark_board(testship_1)
-#print(player.fleet)
-enemy.mark_board(enemytest_ship_1)
-enemy.mark_board(enemytest_ship_2)
-enemy.mark_board(enemytest_ship_3)
-#print(enemytest_ship_1.location)
+# player.mark_board(testship_1)
+# #print(player.fleet)
+# enemy.mark_board(enemytest_ship_1)
+# enemy.mark_board(enemytest_ship_2)
+# enemy.mark_board(enemytest_ship_3)
+# #print(enemytest_ship_1.location)
 
 
-player.attack("d", 6, enemy)
-enemy.attack('a', 10, player)
+# player.attack("d", 6, enemy)
+# enemy.attack('a', 10, player)
