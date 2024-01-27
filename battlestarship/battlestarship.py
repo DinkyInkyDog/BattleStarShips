@@ -173,6 +173,11 @@ class Board:
                     board_being_attacked.ships.remove(ship)
                     board_being_attacked.fleet.pop(ship)
                     
+    def check_defeat(self):
+        if len(self.ships) == 0:
+            return True
+        else:
+            return False
             
                     
 
