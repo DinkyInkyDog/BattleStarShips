@@ -179,7 +179,7 @@ class Board:
         else:
             return False
             
-                    
+run_game = True                    
 
 
        
@@ -277,3 +277,6 @@ class Ship:
 
 # player.attack("d", 6, enemy)
 # enemy.attack('a', 10, player)
+    
+#make a random generator so that the enemy ships are in a different place every time. (after I get the thing working.)
+#when testing it would be a good idea to have the enemy be constant. 
