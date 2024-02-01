@@ -1,5 +1,5 @@
 
-
+#This is the one I shall continue to work on.
 #don't get rid of that.\/ I really need those letters.
 letters = "abcdefghi"
 #there will be two boards. One for the player and one for the enemy that print seperate and hold their own info
