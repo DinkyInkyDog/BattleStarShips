@@ -1,7 +1,7 @@
 
 #This is the one I shall continue to work on.
 #don't get rid of that.\/ I really need those letters.
-letters = "abcdefghi"
+letters = "abcdefghij"
 #there will be two boards. One for the player and one for the enemy that print seperate and hold their own info
 class Board:
     top = """_________________________________________________________
@@ -36,8 +36,7 @@ class Board:
         self.fleet = {}
         self.enemy = enemy
         self.ships = []
-#That list in ships is for the attack function to easily find the ships that are included in the board.
-# I didn't want to mess with the fleet because a bunch of functions use that and I don't want to mess them up.
+
 
     def display(self):
         if self.enemy == False:
@@ -187,96 +186,74 @@ run_game = True
 player = Board()
 enemy = Board(enemy=True)
 
-def find_index(letter, list=letters):
-    index = list.index(letter)
-    return index
 
 class Ship:
-    verticle = True
+    
     alive = True
-    def __init__(self, size, rank = "(A)", status=True):
-        self.location = {}
+    def __init__(self, size, rank = "(A)"):
+        self.location = []
         self.size = size
-        #The initialized ship is friendly by default, so when making the enemy ships change to false.
-        self.friendly = status
         ship_names = ["0", "1", "Scout", "Fighter Jet", "Cargo Ship", "Mothership"]
         self.name = ship_names[size] + rank
-        self.health = size
-    def flip(self):
-        if self.verticle == True:
-            self.verticle = False
-        else:
-            self.verticle = True
 
-    def assign_ship(self, letter, number, up = False, list=letters):
-        if self.verticle == True:
-            if self.size + number > 10:
+    def assign_ship(self, letter, number, verticle = True, up = False, left = False, list=letters):
+        self.verticle = verticle
+        starting_letter_index = letters.index(letter)
+        if self.verticle == True and up == False:
+            if self.size + number > 10 or self.size + starting_letter_index > 9:
                 print("------------------Failed to asign----------------------")
                 print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
                 return False
             else:
-                add = 0
-                for mark in range(0, self.size):
-                    if letter not in self.location:
-                        self.location[letter] = [number]
-                        add += 1
-                        continue
-                    self.location[letter].append(number + add)
-                    add += 1
-        else:
-            if up == False:
-                index = find_index(letter)
-                if index + self.size > len(letters):
-                    print("------------------Failed to asign----------------------")
-                    print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
-                    return False
-                else:
-                    for mark in range(0, self.size):
-                        self.location[letters[index]] = number
-                        index += 1
+                index = starting_letter_index
+                for location in range(0, self.size):
+                    self.location.append([letters[index], number])
+                    index += 1
+        if self.verticle == True and up == True:
+            if self.size - number <= 0 or self.size - starting_letter_index < 0:
+                print("------------------Failed to asign----------------------")
+                print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                return False
             else:
-                index = find_index(letter)
-                if index - self.size < 0:
+                index = starting_letter_index
+                for location in range(0, self.size):
+                    self.location.append([letters[index], number])
+                    index -= 1
+
+        if self.verticle == False:
+            if left == True:
+                if number - self.size <= 0:
                     print("------------------Failed to asign----------------------")
                     print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
                     return False
                 else:
-                    for mark in range(0, self.size):
-                        self.location[letters[index]] = number
-                        index -= 1
-    def take_damage(self):
-        self.health -= 1
-        if self.health <= 0:
-            self.alive = False
+                    num = number
+                    for location in range(0, self.size):
+                        self.location.append([letter, num])
+                        num -= 1
+            else:
+                if number + self.size > 10:
+                    print("------------------Failed to asign----------------------")
+                    print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                    return False
+                else:
+                    num = number
+                    for location in range(0, self.size):
+                        self.location.append([letter, num])
+                        num += 1
 
+#need to change this so that it'll show the locations and health of the ships. 
     def __repr__(self):
-        return self.name
+        stats = " "
+        return stats
 
 
-#testship_1 = Ship(3)
-#testship_1.flip()
-#enemytest_ship_1 = Ship(2)
-#enemytest_ship_1.health = 1
-
-#enemytest_ship_2 = Ship(4)
-#enemytest_ship_2.flip()
-#enemytest_ship_3 = Ship(3)
-
-#testship_1.assign_ship("a", 4)
-#enemytest_ship_1.assign_ship("d", 6, True)
-#enemytest_ship_2.assign_ship("a", 3)
-# enemytest_ship_3.assign_ship("b", 6)
-
-# player.mark_board(testship_1)
-# #print(player.fleet)
-# enemy.mark_board(enemytest_ship_1)
-# enemy.mark_board(enemytest_ship_2)
-# enemy.mark_board(enemytest_ship_3)
-# #print(enemytest_ship_1.location)
+ship_1 = Ship(4, "(A)")
+ship_1.assign_ship("b", 6, False, False, True)
+print(ship_1.location)
 
 
-# player.attack("d", 6, enemy)
-# enemy.attack('a', 10, player)
+
     
 #make a random generator so that the enemy ships are in a different place every time. (after I get the thing working.)
 #when testing it would be a good idea to have the enemy be constant. 
