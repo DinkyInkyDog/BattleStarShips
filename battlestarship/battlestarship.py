@@ -33,54 +33,74 @@ class Board:
     e_bottom = "_________________________________________________________"
     enemy_rows = [e_row_a, e_row_b, e_row_c, e_row_d, e_row_e, e_row_f, e_row_g, e_row_h, e_row_i]
     def __init__(self, enemy = False):
-        self.fleet = {}
+        self.fleet = []
         self.enemy = enemy
-        self.ships = []
+        
 
-
-    def display(self):
+#needs work on display to generate the board.
+    def display(self, letter=letters):
+        row_headers = ["| A", "| B", "| C", "| D", "| E", "| F", "| G", "| H", "| I", "| J"]
         if self.enemy == False:
             print(self.top)
-            for row in self.user_rows:
-                full = ''
-                for part in row:
-                    full += str(part)
-                print(full)
-            print(self.bottom)
+
+            for header in row_headers:
+                row = header
+                index = 0
+                count = 1
+                for column in range(0, 9):
+                    ship_located_here = False
+                    for ships in self.fleet:
+                        if [letter[index], count] in ships.location:
+                            row += "  o  "
+                            ship_located_here = True
+                    if ship_located_here == False:
+                        row += "  .  "
+
+
+
+
+        # if self.enemy == False:
+        #     print(self.top)
+        #     for row in self.user_rows:
+        #         full = ''
+        #         for part in row:
+        #             full += str(part)
+        #         print(full)
+        #     print(self.bottom)
         
-        if self.enemy == True:
-            print(self.e_top)
-            for row in self.enemy_rows:
-                full = ''
-                for part in row:
-                    full += str(part)
-                print(full)
-            print(self.e_bottom) 
+        # if self.enemy == True:
+        #     print(self.e_top)
+        #     for row in self.enemy_rows:
+        #         full = ''
+        #         for part in row:
+        #             full += str(part)
+        #         print(full)
+        #     print(self.e_bottom) 
 
                 
-        else:
-            self.ships.append(ship)
-            self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
-            index = 0
-            row_letters = []
-            for letter in letters:
-                if letters[index] in ship.location.keys():
-                    row_letters.append(letters[index])
-                    index += 1
-                else:
-                    index += 1
-            column_number = 0
-            for num in ship.location.values():
-                    column_number = num
+        # else:
+        #     self.ships.append(ship)
+        #     self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
+        #     index = 0
+        #     row_letters = []
+        #     for letter in letters:
+        #         if letters[index] in ship.location.keys():
+        #             row_letters.append(letters[index])
+        #             index += 1
+        #         else:
+        #             index += 1
+        #     column_number = 0
+        #     for num in ship.location.values():
+        #             column_number = num
            
-            if self.enemy == False:
-                index_2 = 0
-                for row in range(0, len(row_letters)):
-                    i = letters.find(row_letters[index_2])
-                    row = self.user_rows[i]
-                    row.pop(column_number)
-                    row.insert(column_number, "  o  ")
-                    index_2 += 1
+        #     if self.enemy == False:
+        #         index_2 = 0
+        #         for row in range(0, len(row_letters)):
+        #             i = letters.find(row_letters[index_2])
+        #             row = self.user_rows[i]
+        #             row.pop(column_number)
+        #             row.insert(column_number, "  o  ")
+        #             index_2 += 1
             #self.display()
 
     def attack(self, r, c, board_being_attacked, letters=letters):
@@ -169,7 +189,8 @@ class Ship:
         ship_names = ["0", "1", "Scout", "Fighter Jet", "Cargo Ship", "Mothership"]
         self.name = ship_names[size] + rank
 
-    def assign_ship(self, letter, number, verticle = True, up = False, left = False, list=letters):
+    def assign_ship(self, letter, number, board, verticle = True, up = False, left = False, list=letters):
+        board.fleet.append(self)
         self.verticle = verticle
         starting_letter_index = letters.index(letter)
         if self.verticle == True and up == False:
@@ -218,13 +239,15 @@ class Ship:
 
 #need to change this so that it'll show the locations and health of the ships. 
     def __repr__(self):
-        stats = " "
+        stats = """Ship Name: {name}
+         Ship Location: {location} """.format(name=self.name, location=self.location)
+
         return stats
 
 
 ship_1 = Ship(4, "(A)")
-ship_1.assign_ship("b", 6, False, False, True)
-print(ship_1.location)
+ship_1.assign_ship("b", 6, player, False, False, True)
+print(player.fleet)
 
 
 
