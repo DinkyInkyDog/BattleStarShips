@@ -57,34 +57,6 @@ class Board:
                 print(full)
             print(self.e_bottom) 
 
-    def mark_board(self, ship, list=letters):
-        if ship.verticle == True:
-            self.ships.append(ship)
-            self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
-            index = 0
-            row_letter = " "
-            
-            for letter in letters:
-                if letters[index] in ship.location.keys():
-                    row_letter = letters[index]
-                    break
-                else:
-                    index += 1
-            
-            numbers_list = [value for sublist in ship.location.values() for value in sublist]
-            
-            if self.enemy == False:
-                i = letters.find(row_letter)
-                row = self.user_rows[i]
-                index_3 = 0
-                for number in range(0, len(numbers_list)):
-                    row.pop(numbers_list[index_3])
-                    row.insert(numbers_list[index_3], "  o  ")
-                    print(row)
-                    index_3 += 1
-                #print(self.user_rows[i])
-            #self.display()
-                
                 
         else:
             self.ships.append(ship)
@@ -192,6 +164,7 @@ class Ship:
     alive = True
     def __init__(self, size, rank = "(A)"):
         self.location = []
+        self.hit = []
         self.size = size
         ship_names = ["0", "1", "Scout", "Fighter Jet", "Cargo Ship", "Mothership"]
         self.name = ship_names[size] + rank
@@ -241,6 +214,7 @@ class Ship:
                     for location in range(0, self.size):
                         self.location.append([letter, num])
                         num += 1
+        
 
 #need to change this so that it'll show the locations and health of the ships. 
     def __repr__(self):
