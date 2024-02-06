@@ -11,7 +11,55 @@ def clear():
 run_game = True
 #don't get rid of that.\/ I really need those letters.
 letters = "abcdefghij"
-
+scout = """     ___
+ ___/   \___
+/   '---'   \\
+'--_______--'
+     / \\
+    /   \\
+    /   \\
+    /   \\
+    /   \ """
+fighter = """ o            o
+  \          /
+   \        /
+    :-'""'-:
+ .-'  ____  `-.
+( (  (_()_)  ) )
+ `-.   ^^   .-'
+    `._==_.'
+     __)(___ """
+cargo = """ooo
+        / : \\
+       / o0o \\
+ _____"~~~~~~~"_____
+ \+###|U * * U|###+/
+  \...!(.>..<)!.../
+   ^^^^o|   |o^^^^
++=====}:^^^^^:{=====+#
+.____  .|!!!|.  ____.
+|#####:/" " "\:#####|
+|#####=|  O  |=#####|
+|#####>\_____/<#####|
+ ^^^^^   | |   ^^^^^
+         o o """
+mothership = """           \.   \.      __,-"-.__      ./   ./
+       \.   \`.  \`.-'"" _,="=._ ""`-.'/  .'/   ./
+        \`.  \_`-''      _,="=._      ``-'_/  .'/
+         \ `-',-._   _.  _,="=._  ,_   _.-,`-' /
+      \. /`,-',-._""  \ _,="=._ /  ""_.-,`-,'\ ./
+       \`-'  /    `-._  "       "  _.-'    \  `-'/
+       /)   (         \    ,-.    /         )   (\\
+    ,-'"     `-.       \  /   \  /       .-'     "`-,
+  ,'_._         `-.____/ /  _  \ \____.-'         _._`,
+ /,'   `.                \_/ \_/                .'   `,\\
+/'       )                  _                  (       `\\
+        /   _,-'"`-.  ,++|T|||T|++.  .-'"`-,_   \\
+       / ,-'        \/|`|`|`|'|'|'|\/        `-, \\
+      /,'             | | | | | | |             `,\\
+     /'               ` | | | | | '               `\\
+                        ` | | | '
+                          ` | ' """
 class Board:
     top = """_________________________________________________________
 |    1    2    3    4    5    6    7    8    9    10   |"""
@@ -211,3 +259,17 @@ print("""
 swap = input("""{p1} prepare to assign your ships. {p2} do not look.
              press enter when ready""".format(p1=p1_name, p2=p2_name))
 clear()
+p1_scout = Ship(2)
+p1_fighter_a = Ship(3)
+p1_fighter_b = Ship(3, "(B)")
+p1_cargo = Ship(4)
+p1_mother = Ship(5)
+p1_ships = [p1_scout, p1_fighter_a, p1_fighter_b, p1_cargo, p1_mother]
+def pl_ship_assignments(player):
+    print("""                   ---{p}---
+      First up is the scout ship which takes up two spaces on the map.
+        """.format(p=player.name), scout)
+    player.display()
+    scout_faceing = input()
+ 
+pl_ship_assignments(p1_board)
