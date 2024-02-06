@@ -35,6 +35,7 @@ class Board:
     def __init__(self, enemy = False):
         self.fleet = []
         self.enemy = enemy
+        self.miss = []
         
 
 #needs work on display to generate the board.
@@ -63,8 +64,32 @@ class Board:
                 index += 1
                 count = 1
                 row += "  |"
+                print(row)   
+            print(self.bottom)
+        else:
+            print(self.top)
+            index = 0
+            count = 1
+            for header in row_headers:
+                row = header
+                for column in range(0, 10):
+                    something_found = False
+                    for ships in self.fleet:
+                        if [letter[index], count] in ships.hit:
+                            row += "  X  "
+                            something_found = True
+                            break
+                        if [letter[index], count] in self.miss:
+                            row += '  *  '
+                            something_found = True
+                            break
+                    if something_found == False:
+                        row += "  .  "
+                    count += 1
+                index += 1
+                count = 1
+                row += "  |"
                 print(row)
-                
             print(self.bottom)
 
 
@@ -213,7 +238,7 @@ class Ship:
 ship_1 = Ship(4, "(A)")
 ship_1.assign_ship("b", 6, player, False, False, True)
 print(player.fleet)
-player.display()
+
 
 
 
