@@ -1,4 +1,12 @@
+import os
 
+def clear():
+    # for windows
+    if os.name == 'nt':
+        _ = os.system('cls')
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = os.system('clear')
 #This is the one I shall continue to work on.
 run_game = True
 #don't get rid of that.\/ I really need those letters.
@@ -173,7 +181,7 @@ class Ship:
 # ship_1 = Ship(4, "(A)")
 # ship_1.assign_ship("b", 6, player, False, False, True)
 # print(player.fleet)
-
+section = "-----------------------------------------------------------------------------------------------------------------"
 # enemy.attack('b', 4, player)
 print(""" 
  ________             __       __      __ _                _______  _                ___    _             
@@ -185,6 +193,21 @@ print("""
                                                                                                     |  |    
                                                                                                     (___)
 -----------------------------------------------------------------------------------------------------------------""")
+print("Welcome to the squad commander. This is a two player game where one person has access to this screen and passes to the other player when prompted.")
+print("Let's get started!")
+print(section)
 
-while run_game == True:
-    break
+p1_name = input("Player One, what is your name? ex. Lauren          ")
+p1_board = Board(p1_name)
+p2_name = input("Player Two, what is your name? ex. Mark            ")
+p2_board = Board(p2_name)
+print("""
+              ----Players set----
+        phase one: player identification
+                    COMPLETE
+    
+    
+      Begin phase two: fleet assignments""")
+swap = input("""{p1} prepare to assign your ships. {p2} do not look.
+             press enter when ready""".format(p1=p1_name, p2=p2_name))
+clear()
