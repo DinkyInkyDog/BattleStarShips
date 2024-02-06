@@ -1,8 +1,9 @@
 
 #This is the one I shall continue to work on.
+
 #don't get rid of that.\/ I really need those letters.
 letters = "abcdefghij"
-#there will be two boards. One for the player and one for the enemy that print seperate and hold their own info
+
 class Board:
     top = """_________________________________________________________
 |    1    2    3    4    5    6    7    8    9    10   |"""
@@ -13,8 +14,6 @@ class Board:
         self.fleet = []
         self.miss = []
         
-
-#needs work on display to generate the board.
     def display(self, enemy_board=False, letter=letters):
         enemy = enemy_board
         row_headers = ["| A", "| B", "| C", "| D", "| E", "| F", "| G", "| H", "| I", "| J"]
@@ -83,19 +82,8 @@ class Board:
             self.miss.append([r, c])
             print("You missed...")
             
-
-                    
-    def check_defeat(self):
-        if len(self.ships) == 0:
-            return True
-        else:
-            return False
             
-run_game = True                    
-
-
-       
-       
+run_game = True
 player = Board()
 enemy = Board()
 
@@ -158,7 +146,7 @@ class Ship:
                         num += 1
         
 
-#need to change this so that it'll show the locations and health of the ships. 
+
     def __repr__(self):
         stats = """Ship Name: {name}
          Ship Location: {location} """.format(name=self.name, location=self.location)
@@ -173,6 +161,4 @@ print(player.fleet)
 enemy.attack('b', 4, player)
 
 
-    
-#make a random generator so that the enemy ships are in a different place every time. (after I get the thing working.)
-#when testing it would be a good idea to have the enemy be constant. 
+ 
