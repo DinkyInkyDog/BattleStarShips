@@ -1,6 +1,6 @@
 
 #This is the one I shall continue to work on.
-
+run_game = True
 #don't get rid of that.\/ I really need those letters.
 letters = "abcdefghij"
 
@@ -10,10 +10,10 @@ class Board:
 
     bottom = "_________________________________________________________"
 
-    def __init__(self):
+    def __init__(self, name):
         self.fleet = []
         self.miss = []
-        
+        self.name = name
     def display(self, enemy_board=False, letter=letters):
         enemy = enemy_board
         row_headers = ["| A", "| B", "| C", "| D", "| E", "| F", "| G", "| H", "| I", "| J"]
@@ -68,8 +68,17 @@ class Board:
                 print(row)
             print(self.bottom)
 
+    def check_for_defeat(self):
+        defeated = False
+        dead_ships = 0
+        for ship in self.fleet:
+            if ship.alive == False:
+                dead_ships += 1
+        if dead_ships == 5:
+            defeated = True
+        return defeated
 
-    def attack(self, r, c, board_being_attacked, letters=letters):
+    def attack(self, r, c, board_being_attacked, letters=letters, run_game=run_game):
         target_hit = False
         for ship in board_being_attacked.fleet:
             if [r, c] in ship.location:
@@ -77,13 +86,19 @@ class Board:
                 ship.location.remove([r, c])
                 ship.hit.append([r, c])
                 print("You Hit!!")
+                if len(ship.location) == 0:
+                    ship.alive = False
+                    if board_being_attacked.check_for_defeat() == True:
+                        print("{player} wins!!".format(player=self.name))
+                        run_game = False
+                        break
                 break
         if target_hit == False:
             self.miss.append([r, c])
             print("You missed...")
             
             
-run_game = True
+
 player = Board()
 enemy = Board()
 
@@ -97,7 +112,8 @@ class Ship:
         self.size = size
         ship_names = ["0", "1", "Scout", "Fighter Jet", "Cargo Ship", "Mothership"]
         self.name = ship_names[size] + rank
-
+#when setting up the fleets, each player gets 5 ships. x2 fighter jets and 1 of each of the others.
+#be sure to label the two fighter jets, (A) and (B)
     def assign_ship(self, letter, number, board, verticle = True, up = False, left = False, list=letters):
         board.fleet.append(self)
         self.verticle = verticle
@@ -161,4 +177,5 @@ print(player.fleet)
 enemy.attack('b', 4, player)
 
 
- 
+while run_game == True:
+    pass
