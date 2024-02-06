@@ -265,11 +265,37 @@ p1_fighter_b = Ship(3, "(B)")
 p1_cargo = Ship(4)
 p1_mother = Ship(5)
 p1_ships = [p1_scout, p1_fighter_a, p1_fighter_b, p1_cargo, p1_mother]
-def pl_ship_assignments(player):
-    print("""                   ---{p}---
-      First up is the scout ship which takes up two spaces on the map.
-        """.format(p=player.name), scout)
-    player.display()
-    scout_faceing = input()
+def pl_ship_assignments(player, ships_list):
+    for ship in ships_list:
+        print("""                   ---{p}---
+      First up is {type} which takes up {size} spaces on the map.
+        """.format(p=player.name, type=ship.name, size=ship.size))
+        player.display()
+        row = input("choose a starting point. choose a row (the letter must be lower case. ex. b )     ")
+        column = input("now a column.     ")
+        v_q = input("Will the ship be verticle? yes or no.      ")
+        verticle = True
+        up = False
+        left = False
+        if v_q == "yes" or "Yes" or "y":
+            verticle = True
+        else:
+            verticle = False
+    
+        if v_q == True:
+            up_q = input("Do you want the ship going up from the starting point or down?     ")
+            if up_q == "up":
+                up = True
+            else:
+                up = False
+        else:
+            left_q = input("Do you want the ship going left or right from the starting point?    ")
+            if left_q == "left" or "l":
+                left = True
+            else:
+                left = False
+        ships_list[0].assign_ship(row, column, player, verticle, up, left) == False
+        #I want the loop to start over if they try and place a ship where it can't go. 
+
  
 pl_ship_assignments(p1_board)
