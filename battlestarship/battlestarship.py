@@ -42,66 +42,31 @@ class Board:
         row_headers = ["| A", "| B", "| C", "| D", "| E", "| F", "| G", "| H", "| I", "| J"]
         if self.enemy == False:
             print(self.top)
-
+            index = 0
+            count = 1
             for header in row_headers:
                 row = header
-                index = 0
-                count = 1
-                for column in range(0, 9):
+                for column in range(0, 10):
                     ship_located_here = False
                     for ships in self.fleet:
                         if [letter[index], count] in ships.location:
                             row += "  o  "
                             ship_located_here = True
+                            break
+                        if [letter[index], count] in ships.hit:
+                            row += "  X  "
+                            ship_located_here = True
+                            break
                     if ship_located_here == False:
                         row += "  .  "
-
-
-
-
-        # if self.enemy == False:
-        #     print(self.top)
-        #     for row in self.user_rows:
-        #         full = ''
-        #         for part in row:
-        #             full += str(part)
-        #         print(full)
-        #     print(self.bottom)
-        
-        # if self.enemy == True:
-        #     print(self.e_top)
-        #     for row in self.enemy_rows:
-        #         full = ''
-        #         for part in row:
-        #             full += str(part)
-        #         print(full)
-        #     print(self.e_bottom) 
-
+                    count += 1
+                index += 1
+                count = 1
+                row += "  |"
+                print(row)
                 
-        # else:
-        #     self.ships.append(ship)
-        #     self.fleet[ship] = [item for sublist in ship.location.items() for item in sublist]
-        #     index = 0
-        #     row_letters = []
-        #     for letter in letters:
-        #         if letters[index] in ship.location.keys():
-        #             row_letters.append(letters[index])
-        #             index += 1
-        #         else:
-        #             index += 1
-        #     column_number = 0
-        #     for num in ship.location.values():
-        #             column_number = num
-           
-        #     if self.enemy == False:
-        #         index_2 = 0
-        #         for row in range(0, len(row_letters)):
-        #             i = letters.find(row_letters[index_2])
-        #             row = self.user_rows[i]
-        #             row.pop(column_number)
-        #             row.insert(column_number, "  o  ")
-        #             index_2 += 1
-            #self.display()
+            print(self.bottom)
+
 
     def attack(self, r, c, board_being_attacked, letters=letters):
         values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
@@ -248,6 +213,7 @@ class Ship:
 ship_1 = Ship(4, "(A)")
 ship_1.assign_ship("b", 6, player, False, False, True)
 print(player.fleet)
+player.display()
 
 
 
