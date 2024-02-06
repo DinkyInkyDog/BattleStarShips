@@ -71,65 +71,19 @@ class Board:
 
 
     def attack(self, r, c, board_being_attacked, letters=letters):
-        values = [value for sublist in board_being_attacked.fleet.values() for value in sublist]
-        
-        list_values = []
-        for item in values:
-            if isinstance(item, list):
-                for n in item:
-                    list_values.append(n)
-            else:
-                list_values.append(item)
+        target_hit = False
+        for ship in board_being_attacked.fleet:
+            if [r, c] in ship.location:
+                target_hit = True
+                ship.location.remove([r, c])
+                ship.hit.append([r, c])
+                print("You Hit!!")
+                break
+        if target_hit == False:
+            self.miss.append([r, c])
+            print("You missed...")
+            
 
-        hit = False
-        if r in list_values and c in list_values:
-            hit = True
-            if self.enemy == False:
-                i = letters.find(r)
-                row= board_being_attacked.enemy_rows[i]
-                row.pop(c)
-                row.insert(c, "  X  ")
-                board_being_attacked.display()
-                print("you hit!")
-            else:
-                i = letters.find(r)
-                row= board_being_attacked.user_rows[i]
-                row.pop(c)
-                row.insert(c, "  X  ")
-                board_being_attacked.display()
-                print("you've been hit!")
-        else:
-            if self.enemy == True:
-                i = letters.find(r)
-                row= board_being_attacked.user_rows[i]
-                row.pop(c)
-                row.insert(c, "  *  ")
-                board_being_attacked.display()
-                print("miss")
-            else:
-                i = letters.find(r)
-                row= board_being_attacked.enemy_rows[i]
-                row.pop(c)
-                row.insert(c, "  o  ")
-                board_being_attacked.display()
-                print("miss") 
-        #Okay so marking the board works. Just need to damage the ship.
-        if hit == True:
-            for ship in board_being_attacked.ships:
-                #print(ship)
-                #print(ship.health)
-                if ship.location.get(r, False) != False:
-                    n = ship.location[r]
-                    if isinstance(n, list):
-                        for number in n:
-                            if number == c:
-                                ship.take_damage()
-                    else:
-                        if n == c:
-                            ship.take_damage()
-                if ship.alive == False:
-                    board_being_attacked.ships.remove(ship)
-                    board_being_attacked.fleet.pop(ship)
                     
     def check_defeat(self):
         if len(self.ships) == 0:
@@ -143,7 +97,7 @@ run_game = True
        
        
 player = Board()
-enemy = Board(enemy=True)
+enemy = Board()
 
 
 class Ship:
@@ -216,7 +170,7 @@ ship_1 = Ship(4, "(A)")
 ship_1.assign_ship("b", 6, player, False, False, True)
 print(player.fleet)
 
-
+enemy.attack('b', 4, player)
 
 
     
