@@ -99,8 +99,8 @@ class Board:
             
             
 
-player = Board()
-enemy = Board()
+# player = Board()
+# enemy = Board()
 
 
 class Ship:
@@ -170,12 +170,19 @@ class Ship:
         return stats
 
 
-ship_1 = Ship(4, "(A)")
-ship_1.assign_ship("b", 6, player, False, False, True)
-print(player.fleet)
+# ship_1 = Ship(4, "(A)")
+# ship_1.assign_ship("b", 6, player, False, False, True)
+# print(player.fleet)
 
-enemy.attack('b', 4, player)
-
+# enemy.attack('b', 4, player)
+print("""  ___                 __       __       _ _                     ___   _                ___   _             
+(    _   \           (   )__ (    )_ (_    )                 (  _   \( )_             (  _ \( )    _       
+|  (__)   ) _ _ _____|    __)       _)|   |     ____       | (___(_)  _)  _ _ _ __  | (_(_) |__ (_) __ ___   
+|    _  (  /   __    )   |   |    |   |   |   /  ____ \   \__ \| |  / _  )  __)  \__ \|  _  \    |     _    \ 
+|  (__)  )|   (__|  |    |__ |    |__ |   |__(  ______/   ( )_) | |_( (_| | |    ( )_) | | | |     |    (_)    )
+(_______/  \__ ______)\_____)\_______)_______)\_______)    \____)\__)\__ _)_) _\____)_) (_)_)      __/ 
+                                                                                                                              |    |    
+                                                                                                                             (___)""")
 
 while run_game == True:
     pass
