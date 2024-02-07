@@ -172,12 +172,13 @@ class Ship:
 #be sure to label the two fighter jets, (A) and (B)
     def assign_ship(self, letter, number, board, verticle = True, up = False, left = False, list=letters):
         board.fleet.append(self)
+        size_sub = self.size - 1
         self.verticle = verticle
         starting_letter_index = letters.index(letter)
         if self.verticle == True and up == False:
-            if self.size + int(number) > 10 or self.size + starting_letter_index > 9:
+            if size_sub + starting_letter_index > 10:
                 print("------------------Failed to asign----------------------")
-                print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                print("location invalid for {ship}: {row}{num} going down takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                 return False
             else:
                 index = starting_letter_index
@@ -185,9 +186,9 @@ class Ship:
                     self.location.append([letters[index], number])
                     index += 1
         if self.verticle == True and up == True:
-            if self.size - int(number) <= 0 or self.size - starting_letter_index < 0:
+            if size_sub - starting_letter_index < 0:
                 print("------------------Failed to asign----------------------")
-                print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                print("location invalid for {ship}: {row}{num} going up takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                 return False
             else:
                 index = starting_letter_index
@@ -197,9 +198,9 @@ class Ship:
 
         if self.verticle == False:
             if left == True:
-                if int(number) - self.size <= 0:
+                if int(number) - size_sub <= 0:
                     print("------------------Failed to asign----------------------")
-                    print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                    print("location invalid for {ship}: {row}{num} going left takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                     return False
                 else:
                     num = number
@@ -207,9 +208,9 @@ class Ship:
                         self.location.append([letter, num])
                         num -= 1
             else:
-                if int(number) + self.size > 10:
+                if int(number) + size_sub > 10:
                     print("------------------Failed to asign----------------------")
-                    print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
+                    print("location invalid for {ship}: {row}{num} going right takes the ship off the board.".format(ship=self.name))
                     return False
                 else:
                     num = number
@@ -301,6 +302,6 @@ def pl_ship_assignments(player, ships_list):
         p1_board.display()
         pause = input("press enter to continue")
 
-#p1_scout.assign_ship("e", 6, p1_board, True)
+
 
 pl_ship_assignments(p1_board, p1_ships)
