@@ -258,7 +258,7 @@ print("""
       Begin phase two: fleet assignments""")
 swap = input("""{p1} prepare to assign your ships. {p2} do not look.
              press enter when ready""".format(p1=p1_name, p2=p2_name))
-clear()
+#clear()
 p1_scout = Ship(2)
 p1_fighter_a = Ship(3)
 p1_fighter_b = Ship(3, "(B)")
@@ -274,14 +274,14 @@ def pl_ship_assignments(player, ships_list):
             """.format(p=player.name, type=ship.name, size=ship.size))
         player.display()
         row = input("choose a starting point. choose a row (the letter must be lower case. ex. b )     ")
-        column = input("now a column.     ")
+        column = int(input("now a column.     "))
         v_q = input("Will the ship be verticle? yes or no.      ")
         verticle = True
         up = False
         left = False
         if v_q == "yes" or "Yes" or "y":
             verticle = True
-        else:
+        if v_q == "no" or "No" or "n":
             verticle = False
         
         if verticle == True:
@@ -298,6 +298,9 @@ def pl_ship_assignments(player, ships_list):
                 left = False
         ships_list[0].assign_ship(row, column, player, verticle, up, left)
         #I want the loop to start over if they try and place a ship where it can't go. 
+        p1_board.display()
+        pause = input("press enter to continue")
 
- 
+#p1_scout.assign_ship("e", 6, p1_board, True)
+
 pl_ship_assignments(p1_board, p1_ships)
