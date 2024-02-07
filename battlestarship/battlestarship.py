@@ -177,7 +177,7 @@ class Ship:
         starting_letter_index = letters.index(letter)
         if self.verticle == True and up == False:
             if size_sub + starting_letter_index > 10:
-                print("------------------Failed to asign----------------------")
+                print("------------------Failed to assign----------------------")
                 print("location invalid for {ship}: {row}{num} going down takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                 return False
             else:
@@ -187,7 +187,7 @@ class Ship:
                     index += 1
         if self.verticle == True and up == True:
             if size_sub - starting_letter_index < 0:
-                print("------------------Failed to asign----------------------")
+                print("------------------Failed to assign----------------------")
                 print("location invalid for {ship}: {row}{num} going up takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                 return False
             else:
@@ -199,7 +199,7 @@ class Ship:
         if self.verticle == False:
             if left == True:
                 if int(number) - size_sub <= 0:
-                    print("------------------Failed to asign----------------------")
+                    print("------------------Failed to assign----------------------")
                     print("location invalid for {ship}: {row}{num} going left takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                     return False
                 else:
@@ -209,7 +209,7 @@ class Ship:
                         num -= 1
             else:
                 if int(number) + size_sub > 10:
-                    print("------------------Failed to asign----------------------")
+                    print("------------------Failed to assign----------------------")
                     print("location invalid for {ship}: {row}{num} going right takes the ship off the board.".format(ship=self.name))
                     return False
                 else:
