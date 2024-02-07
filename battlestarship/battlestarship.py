@@ -258,7 +258,7 @@ print("""
       Begin phase two: fleet assignments""")
 swap = input("""{p1} prepare to assign your ships. {p2} do not look.
              press enter when ready""".format(p1=p1_name, p2=p2_name))
-#clear()
+clear()
 p1_scout = Ship(2)
 p1_fighter_a = Ship(3)
 p1_fighter_b = Ship(3, "(B)")
@@ -279,9 +279,9 @@ def pl_ship_assignments(player, ships_list):
         verticle = True
         up = False
         left = False
-        if v_q == "yes" or "Yes" or "y":
+        if v_q == "yes" or v_q == "Yes" or v_q == "y":
             verticle = True
-        if v_q == "no" or "No" or "n":
+        if v_q == "no" or v_q == "No" or v_q == "n":
             verticle = False
         
         if verticle == True:
