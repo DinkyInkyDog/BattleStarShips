@@ -269,7 +269,7 @@ p1_ships = [p1_scout, p1_fighter_a, p1_fighter_b, p1_cargo, p1_mother]
 def pl_ship_assignments(player, ships_list):
     for ship in ships_list:
         placed_ship = False
-        
+        index = 0
         print("""                   ---{p}---
         Assign the {type} which takes up {size} spaces on the map.
             """.format(p=player.name, type=ship.name, size=ship.size))
@@ -297,9 +297,12 @@ def pl_ship_assignments(player, ships_list):
                 left = True
             else:
                 left = False
-        ships_list[0].assign_ship(row, column, player, verticle, up, left)
+        ships_list[index].assign_ship(row, column, player, verticle, up, left)
         #I want the loop to start over if they try and place a ship where it can't go. 
+        if ships_list[index].assign_ship(row, column, player, verticle, up, left) == False:
+            break
         p1_board.display()
+        index += 1
         pause = input("press enter to continue")
 
 
