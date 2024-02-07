@@ -175,7 +175,7 @@ class Ship:
         self.verticle = verticle
         starting_letter_index = letters.index(letter)
         if self.verticle == True and up == False:
-            if self.size + number > 10 or self.size + starting_letter_index > 9:
+            if self.size + int(number) > 10 or self.size + starting_letter_index > 9:
                 print("------------------Failed to asign----------------------")
                 print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
                 return False
@@ -185,7 +185,7 @@ class Ship:
                     self.location.append([letters[index], number])
                     index += 1
         if self.verticle == True and up == True:
-            if self.size - number <= 0 or self.size - starting_letter_index < 0:
+            if self.size - int(number) <= 0 or self.size - starting_letter_index < 0:
                 print("------------------Failed to asign----------------------")
                 print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
                 return False
@@ -197,7 +197,7 @@ class Ship:
 
         if self.verticle == False:
             if left == True:
-                if number - self.size <= 0:
+                if int(number) - self.size <= 0:
                     print("------------------Failed to asign----------------------")
                     print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
                     return False
@@ -207,7 +207,7 @@ class Ship:
                         self.location.append([letter, num])
                         num -= 1
             else:
-                if number + self.size > 10:
+                if int(number) + self.size > 10:
                     print("------------------Failed to asign----------------------")
                     print("location invalid for {ship}: can't place ship off the board.".format(ship=self.name))
                     return False
@@ -267,9 +267,11 @@ p1_mother = Ship(5)
 p1_ships = [p1_scout, p1_fighter_a, p1_fighter_b, p1_cargo, p1_mother]
 def pl_ship_assignments(player, ships_list):
     for ship in ships_list:
+        placed_ship = False
+        
         print("""                   ---{p}---
-      First up is {type} which takes up {size} spaces on the map.
-        """.format(p=player.name, type=ship.name, size=ship.size))
+        Assign the {type} which takes up {size} spaces on the map.
+            """.format(p=player.name, type=ship.name, size=ship.size))
         player.display()
         row = input("choose a starting point. choose a row (the letter must be lower case. ex. b )     ")
         column = input("now a column.     ")
@@ -281,8 +283,8 @@ def pl_ship_assignments(player, ships_list):
             verticle = True
         else:
             verticle = False
-    
-        if v_q == True:
+        
+        if verticle == True:
             up_q = input("Do you want the ship going up from the starting point or down?     ")
             if up_q == "up":
                 up = True
@@ -294,8 +296,8 @@ def pl_ship_assignments(player, ships_list):
                 left = True
             else:
                 left = False
-        ships_list[0].assign_ship(row, column, player, verticle, up, left) == False
+        ships_list[0].assign_ship(row, column, player, verticle, up, left)
         #I want the loop to start over if they try and place a ship where it can't go. 
 
  
-pl_ship_assignments(p1_board)
+pl_ship_assignments(p1_board, p1_ships)
