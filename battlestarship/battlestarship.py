@@ -296,15 +296,15 @@ def pl_ship_assignments(player, ships_list):
             up_q = input("Do you want the ship going up from the starting point or down?     ")
             if up_q == "up":
                 up = True
-            else:
+            if up_q == "down" or up_q == "d":
                 up = False
         else:
             left_q = input("Do you want the ship going left or right from the starting point?    ")
-            if left_q == "left" or "l":
+            if left_q == "left" or left_q == "l":
                 left = True
-            else:
+            if left_q == "right" or left_q == "r":
                 left = False
-        ships_list[index].assign_ship(row, column, player, verticle, up, left)
+        ship.assign_ship(row, column, player, verticle, up, left)
         #I want the loop to start over if they try and place a ship where it can't go. 
         if ships_list[index].assign_ship(row, column, player, verticle, up, left) == False:
             break
