@@ -176,7 +176,9 @@ class Ship:
         self.verticle = verticle
         starting_letter_index = letters.index(letter)
         if self.verticle == True and up == False:
-            if size_sub + starting_letter_index > 10:
+            
+            if starting_letter_index + size_sub > 10:
+                print(starting_letter_index + size_sub)
                 print("------------------Failed to assign----------------------")
                 print("location invalid for {ship}: {row}{num} going down takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                 return False
@@ -186,7 +188,8 @@ class Ship:
                     self.location.append([letters[index], number])
                     index += 1
         if self.verticle == True and up == True:
-            if size_sub - starting_letter_index < 0:
+            if starting_letter_index- size_sub < 0:
+                print(starting_letter_index- size_sub)
                 print("------------------Failed to assign----------------------")
                 print("location invalid for {ship}: {row}{num} going up takes the ship off the board.".format(ship=self.name, row=letter, num = number))
                 return False
@@ -226,14 +229,15 @@ class Ship:
 
         return stats
 
-
-# ship_1 = Ship(4, "(A)")
-# ship_1.assign_ship("b", 6, player, False, False, True)
+# player = Board("p1")
+# ship_1 = Ship(3)
+# ship_1.assign_ship("g", 7, player, False, True, False)
+#player.display()
 # print(player.fleet)
 section = "-----------------------------------------------------------------------------------------------------------------"
 # enemy.attack('b', 4, player)
-def welcome():
-    print(""" 
+
+print(""" 
     ________             __       __      __ _                _______  _                ___    _             
     (    _   \           (   )__ (    )_ (_    )              (    __ \( )_             (  _  \( )    _       
     |  (__)   ) _ _ _____|    __)       _)|   |     ____       |  (__(_)  _)  _ _ _ __  | (__(_) |__ (_) __ __  
@@ -243,26 +247,26 @@ def welcome():
                                                                                                         |  |    
                                                                                                         (___)
     -----------------------------------------------------------------------------------------------------------------""")
-    print("Welcome to the squad commander. This is a two player game where one person has access to this screen and passes to the other player when prompted.")
-    print("Let's get started!")
-    print(section)
+print("Welcome to the squad commander. This is a two player game where one person has access to this screen and passes to the other player when prompted.")
+print("Let's get started!")
+print(section)
 
-    p1_name = input("Player One, what is your name? ex. Lauren          ")
-    p1_board = Board(p1_name)
-    p2_name = input("Player Two, what is your name? ex. Mark            ")
-    p2_board = Board(p2_name)
-    print("""
+p1_name = input("Player One, what is your name? ex. Lauren          ")
+p1_board = Board(p1_name)
+p2_name = input("Player Two, what is your name? ex. Mark            ")
+p2_board = Board(p2_name)
+print("""
                 ----Players set----
             phase one: player identification
                         COMPLETE
         
         
         Begin phase two: fleet assignments""")
-    swap = input("""{p1} prepare to assign your ships. {p2} do not look.
+swap = input("""{p1} prepare to assign your ships. {p2} do not look.
                 press enter when ready""".format(p1=p1_name, p2=p2_name))
-    clear()
+clear()    
 
-welcome()
+
 p1_scout = Ship(2)
 p1_fighter_a = Ship(3)
 p1_fighter_b = Ship(3, "(B)")
@@ -310,4 +314,4 @@ def pl_ship_assignments(player, ships_list):
 
 
 
-#pl_ship_assignments(p1_board, p1_ships)
+pl_ship_assignments(p1_board, p1_ships)
