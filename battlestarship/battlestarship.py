@@ -155,8 +155,7 @@ class Board:
             
             
 
-# player = Board()
-# enemy = Board()
+
 
 
 class Ship:
@@ -221,7 +220,8 @@ class Ship:
                         self.location.append([letter, num])
                         num += 1
         
-
+    def selfdestruct(self):
+        self.alive = False
 
     def __repr__(self):
         stats = """Ship Name: {name}
@@ -229,13 +229,9 @@ class Ship:
 
         return stats
 
-# player = Board("p1")
-# ship_1 = Ship(3)
-# ship_1.assign_ship("g", 7, player, False, True, False)
-#player.display()
-# print(player.fleet)
+
 section = "-----------------------------------------------------------------------------------------------------------------"
-# enemy.attack('b', 4, player)
+
 
 print(""" 
     ________             __       __      __ _                _______  _                ___    _             
@@ -344,13 +340,20 @@ def ship_assignments(player, ships_list):
         pause = input("press enter to continue")
     clear()
     
+#uncomment before posting.
 
-ship_assignments(p1_board, p1_ships)
-print("Fleet as been deployed!")
-pause = input("Pass the controls to {p} and press enter to continue".format(p=p2_board.name))
-ship_assignments(p2_board, p2_ships)
-print("Fleet as been deployed!")
-print("Both Fleets are ready for battle! Pass controls over to {p1} to start us off.".format(p1= p1_board.name))
-pause= input("press enter to continue")
-clear()
+# ship_assignments(p1_board, p1_ships)
+# print("Fleet as been deployed!")
+# pause = input("Pass the controls to {p} and press enter to continue".format(p=p2_board.name))
+# ship_assignments(p2_board, p2_ships)
+# print("Fleet as been deployed!")
+# print("Both Fleets are ready for battle! Pass controls over to {p1} to start us off.".format(p1= p1_board.name))
+# pause= input("press enter to continue")
+# clear()
 
+def user_attack(player_board, enemy_board):
+    print("------------{p}-------------".format(p=player_board.name))
+    print("targetting system active. Select Location.")
+    enemy_board.display(True)
+
+user_attack(t1_board, t2_board)
