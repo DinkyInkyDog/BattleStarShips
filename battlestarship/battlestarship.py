@@ -273,7 +273,15 @@ p1_fighter_b = Ship(3, "(B)")
 p1_cargo = Ship(4)
 p1_mother = Ship(5)
 p1_ships = [p1_scout, p1_fighter_a, p1_fighter_b, p1_cargo, p1_mother]
-def pl_ship_assignments(player, ships_list):
+
+p2_scout = Ship(2)
+p2_fighter_a = Ship(3)
+p2_fighter_b = Ship(3, "(B)")
+p2_cargo = Ship(4)
+p2_mother = Ship(5)
+p2_ships = [p2_scout, p2_fighter_a, p2_fighter_b, p2_cargo, p2_mother]
+
+def ship_assignments(player, ships_list):
     for ship in ships_list:
         placed_ship = False
         while placed_ship == False:
@@ -309,7 +317,14 @@ def pl_ship_assignments(player, ships_list):
             
         p1_board.display()
         pause = input("press enter to continue")
+    clear()
+    
 
-
-
-pl_ship_assignments(p1_board, p1_ships)
+ship_assignments(p1_board, p1_ships)
+print("Fleet as been deployed!")
+pause = input("Pass the controls to {p} and press enter to continue".format(p=p2_board.name))
+ship_assignments(p2_board, p2_ships)
+print("Fleet as been deployed!")
+print("Both Fleets are ready for battle! Pass controls over to {p1} to start us off.".format(p1= p1_board.name))
+pause= input("press enter to continue")
+clear()
