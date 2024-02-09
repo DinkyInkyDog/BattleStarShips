@@ -276,40 +276,38 @@ p1_ships = [p1_scout, p1_fighter_a, p1_fighter_b, p1_cargo, p1_mother]
 def pl_ship_assignments(player, ships_list):
     for ship in ships_list:
         placed_ship = False
-        index = 0
-        print("""                   ---{p}---
-        Assign the {type} which takes up {size} spaces on the map.
-            """.format(p=player.name, type=ship.name, size=ship.size))
-        player.display()
-        row = input("choose a starting point. choose a row (the letter must be lower case. ex. b )     ")
-        column = int(input("now a column.     "))
-        v_q = input("Will the ship be verticle? yes or no.      ")
-        verticle = True
-        up = False
-        left = False
-        if v_q == "yes" or v_q == "Yes" or v_q == "y":
+        while placed_ship == False:
+            print("""                   ---{p}---
+            Assign the {type} which takes up {size} spaces on the map.
+                """.format(p=player.name, type=ship.name, size=ship.size))
+            player.display()
+            row = input("choose a starting point. choose a row (the letter must be lower case. ex. b )     ")
+            column = int(input("now a column.     "))
+            v_q = input("Will the ship be verticle? yes or no.      ")
             verticle = True
-        if v_q == "no" or v_q == "No" or v_q == "n":
-            verticle = False
-        
-        if verticle == True:
-            up_q = input("Do you want the ship going up from the starting point or down?     ")
-            if up_q == "up":
-                up = True
-            if up_q == "down" or up_q == "d":
-                up = False
-        else:
-            left_q = input("Do you want the ship going left or right from the starting point?    ")
-            if left_q == "left" or left_q == "l":
-                left = True
-            if left_q == "right" or left_q == "r":
-                left = False
-        ship.assign_ship(row, column, player, verticle, up, left)
-        #I want the loop to start over if they try and place a ship where it can't go. 
-        if ships_list[index].assign_ship(row, column, player, verticle, up, left) == False:
-            break
+            up = False
+            left = False
+            if v_q == "yes" or v_q == "Yes" or v_q == "y":
+                verticle = True
+            if v_q == "no" or v_q == "No" or v_q == "n":
+                verticle = False
+            
+            if verticle == True:
+                up_q = input("Do you want the ship going up from the starting point or down?     ")
+                if up_q == "up":
+                    up = True
+                if up_q == "down" or up_q == "d":
+                    up = False
+            else:
+                left_q = input("Do you want the ship going left or right from the starting point?    ")
+                if left_q == "left" or left_q == "l":
+                    left = True
+                if left_q == "right" or left_q == "r":
+                    left = False
+            if ship.assign_ship(row, column, player, verticle, up, left) != False:
+                placed_ship = True 
+            
         p1_board.display()
-        index += 1
         pause = input("press enter to continue")
 
 
