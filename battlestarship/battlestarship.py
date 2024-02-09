@@ -114,7 +114,6 @@ class Board:
                         if [letter[index], count] in self.miss:
                             row += '  *  '
                             something_found = True
-                            break
                     if something_found == False:
                         row += "  .  "
                     count += 1
@@ -354,6 +353,11 @@ def ship_assignments(player, ships_list):
 def user_attack(player_board, enemy_board):
     print("------------{p}-------------".format(p=player_board.name))
     print("targetting system active. Select Location.")
+    enemy_board.display(True)
+    row = str(input("Select a row. ex. d            "))
+    column = int(input("Selct a column. ex 8            "))
+    player_board.attack(row, column, enemy_board)
+    print(player_board.miss)
     enemy_board.display(True)
 
 user_attack(t1_board, t2_board)
