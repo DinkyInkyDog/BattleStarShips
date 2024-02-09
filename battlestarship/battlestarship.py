@@ -281,6 +281,31 @@ p2_cargo = Ship(4)
 p2_mother = Ship(5)
 p2_ships = [p2_scout, p2_fighter_a, p2_fighter_b, p2_cargo, p2_mother]
 
+#Here are two fake players so that I can skip the assignment stage when testing the fighting stage.
+t1_board = Board("Tester 1")
+t1_scout = Ship(2)
+t1_scout.assign_ship("a", 1, t1_board, False, False, False)
+t1_fighter_a = Ship(3)
+t1_fighter_a.assign_ship("b", 1, t1_board, False, False, False)
+t1_fighter_b = Ship(3, "(B)")
+t1_fighter_b.assign_ship("c", 1, t1_board, False, False, False) 
+t1_cargo = Ship(4)
+t1_cargo.assign_ship("d", 1, t1_board, False, False, False)
+t1_mother = Ship(5)
+t1_mother.assign_ship("e", 1, t1_board, False, False, False)
+
+t2_board = Board("Tester 2")
+t2_scout = Ship(2)
+t2_scout.assign_ship("a", 1, t2_board, False, False, False)
+t2_fighter_a = Ship(3)
+t2_fighter_a.assign_ship("b", 1, t2_board, False, False, False)
+t2_fighter_b = Ship(3, "(B)")
+t2_fighter_b.assign_ship("c", 1, t2_board, False, False, False) 
+t2_cargo = Ship(4)
+t2_cargo.assign_ship("d", 1, t2_board, False, False, False)
+t2_mother = Ship(5)
+t2_mother.assign_ship("e", 1, t2_board, False, False, False)
+
 def ship_assignments(player, ships_list):
     for ship in ships_list:
         placed_ship = False
@@ -328,3 +353,4 @@ print("Fleet as been deployed!")
 print("Both Fleets are ready for battle! Pass controls over to {p1} to start us off.".format(p1= p1_board.name))
 pause= input("press enter to continue")
 clear()
+
