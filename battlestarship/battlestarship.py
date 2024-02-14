@@ -184,12 +184,12 @@ section = "---------------------------------------------------------------------
 
 
 print(""" 
-    ________             __       __      __ _                _______  _                ___    _             
-    (    _   \           (   )__ (    )_ (_    )              (    __ \( )_             (  _  \( )    _       
-    |  (__)   ) _ _ _____|    __)       _)|   |     ____       |  (__(_)  _)  _ _ _ __  | (__(_) |__ (_) __ __  
-    |    _  (  /   __    )   |   |    |   |   |   /  ____ \     \__  \ | |  / _  )  __)  \___ \|  _  \ |   __  \ 
-    |  (__)  )|   (__|  |    |__ |    |__ |   |__(  ______/   ( )__)  || |_( (_| | |    ( )__) | | | | |  (__)  )
-    (_______/  \__ ______)\_____)\_______)_______)\_______)    \______)\___)\__ _)_)     \_____)_) (_)_)     __/ 
+    ________             __       __      __ _                _______     _                ___    _             
+    (    _   \           (   )__ (    )_ (_    )              (    __ \(   )_             (  _  \( )    _       
+    |  (__)   ) _ _ _____|    __)       _)|   |     ____       |  (__(_)    _)  _ _ _ __  | (__(_) |__ (_) __ __  
+    |    _  (  /   __    )   |   |    |   |   |   /  ____ \     \__  \ |   |  / _  )  __)  \___ \|  _  \ |   __  \ 
+    |  (__)  )|   (__|  |    |__ |    |__ |   |__(  ______/   ( )__)  ||   |_( (_| | |    ( )__) | | | | |  (__)  )
+    (_______/  \__ ______)\_____)\_______)_______)\_______)    \______)\__  _)\__ _)_)     \_____)_) (_)_)     __/ 
                                                                                                         |  |    
                                                                                                         (___)
     -----------------------------------------------------------------------------------------------------------------""")
@@ -320,6 +320,7 @@ def user_attack(player_board, enemy_board):
         print("Your Fleet")
         enemy_board.display()
         engage = input("Press enter to activate targetting system")
+        clear()
         print("------------{p}-------------".format(p=enemy_board.name))
         print("targetting system active. Select Location.")
         player_board.display(True)
@@ -336,8 +337,10 @@ def user_attack(player_board, enemy_board):
         print("Your Fleet")
         player_board.display()
         engage = input("Press enter to activate targetting system")
+        clear()
 
-
+t2_mother.selfdestruct()
+t2_fighter_a.selfdestruct()
+t2_fighter_b.selfdestruct()
+t2_cargo.selfdestruct()
 user_attack(t1_board, t2_board)
-# t1_board.attack('b', 10, t2_board)
-# t2_board.display(True)
