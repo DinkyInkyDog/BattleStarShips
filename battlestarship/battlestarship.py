@@ -88,7 +88,7 @@ class Board:
             defeated = True
         return defeated
 
-    def attack(self, r, c, board_being_attacked, letters=letters, run_game=run_game):
+    def attack(self, r, c, board_being_attacked, letters=letters):
         target_hit = False
         for ship in board_being_attacked.fleet:
             if [r, c] in ship.location:
