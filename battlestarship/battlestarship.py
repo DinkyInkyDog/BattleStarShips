@@ -8,58 +8,10 @@ def clear():
     else:
         _ = os.system('clear')
 #This is the one I shall continue to work on.
-run_game = True
+
 #don't get rid of that.\/ I really need those letters.
 letters = "abcdefghij"
-scout = """     ___
- ___/   \___
-/   '---'   \\
-'--_______--'
-     / \\
-    /   \\
-    /   \\
-    /   \\
-    /   \ """
-fighter = """ o            o
-  \          /
-   \        /
-    :-'""'-:
- .-'  ____  `-.
-( (  (_()_)  ) )
- `-.   ^^   .-'
-    `._==_.'
-     __)(___ """
-cargo = """ooo
-        / : \\
-       / o0o \\
- _____"~~~~~~~"_____
- \+###|U * * U|###+/
-  \...!(.>..<)!.../
-   ^^^^o|   |o^^^^
-+=====}:^^^^^:{=====+#
-.____  .|!!!|.  ____.
-|#####:/" " "\:#####|
-|#####=|  O  |=#####|
-|#####>\_____/<#####|
- ^^^^^   | |   ^^^^^
-         o o """
-mothership = """           \.   \.      __,-"-.__      ./   ./
-       \.   \`.  \`.-'"" _,="=._ ""`-.'/  .'/   ./
-        \`.  \_`-''      _,="=._      ``-'_/  .'/
-         \ `-',-._   _.  _,="=._  ,_   _.-,`-' /
-      \. /`,-',-._""  \ _,="=._ /  ""_.-,`-,'\ ./
-       \`-'  /    `-._  "       "  _.-'    \  `-'/
-       /)   (         \    ,-.    /         )   (\\
-    ,-'"     `-.       \  /   \  /       .-'     "`-,
-  ,'_._         `-.____/ /  _  \ \____.-'         _._`,
- /,'   `.                \_/ \_/                .'   `,\\
-/'       )                  _                  (       `\\
-        /   _,-'"`-.  ,++|T|||T|++.  .-'"`-,_   \\
-       / ,-'        \/|`|`|`|'|'|'|\/        `-, \\
-      /,'             | | | | | | |             `,\\
-     /'               ` | | | | | '               `\\
-                        ` | | | '
-                          ` | ' """
+
 class Board:
     top = """_________________________________________________________
 |    1    2    3    4    5    6    7    8    9    10   |"""
@@ -90,6 +42,9 @@ class Board:
                             row += "  X  "
                             ship_located_here = True
                             break
+                    if [letter[index], count] in self.miss:
+                        row += "  *  "
+                        ship_located_here = True
                     if ship_located_here == False:
                         row += "  .  "
                     count += 1
@@ -143,10 +98,6 @@ class Board:
                 print("You Hit!!")
                 if len(ship.location) == 0:
                     ship.alive = False
-                    if board_being_attacked.check_for_defeat() == True:
-                        print("{player} wins!!".format(player=self.name))
-                        run_game = False
-                        break
                 break
         if target_hit == False:
             board_being_attacked.miss.append([r, c])
@@ -351,13 +302,41 @@ def ship_assignments(player, ships_list):
 # clear()
 
 def user_attack(player_board, enemy_board):
-    print("------------{p}-------------".format(p=player_board.name))
-    print("targetting system active. Select Location.")
-    enemy_board.display(True)
-    row = str(input("Select a row. ex. d            "))
-    column = int(input("Selct a column. ex 8            "))
-    player_board.attack(row, column, enemy_board)
-    enemy_board.display(True)
+    run_game = True
+    while run_game == True:
+        print("------------{p}-------------".format(p=player_board.name))
+        print("targetting system active. Select Location.")
+        enemy_board.display(True)
+        row = str(input("Select a row. ex. d            "))
+        column = int(input("Selct a column. ex 8            "))
+        player_board.attack(row, column, enemy_board)
+        enemy_board.display(True)
+        if enemy_board.check_for_defeat == True:
+            print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p1=player_board.name, p2=enemy_board.name))
+            run_game = False
+        print("it is now {p}'s turn.".format(p=enemy_board.name))
+        passed = input("Pass controls to them and hit enter when ready.")
+        clear()
+        print("Your Fleet")
+        enemy_board.display()
+        engage = input("Press enter to activate targetting system")
+        print("------------{p}-------------".format(p=enemy_board.name))
+        print("targetting system active. Select Location.")
+        player_board.display(True)
+        row = str(input("Select a row. ex. d            "))
+        column = int(input("Selct a column. ex 8            "))
+        enemy_board.attack(row, column, player_board)
+        player_board.display(True)
+        if player_board.check_for_defeat == True:
+            print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p2=player_board.name, p1=enemy_board.name))
+            run_game = False
+        print("it is now {p}'s turn.".format(p=player_board.name))
+        passed = input("Pass controls to them and hit enter when ready.")
+        clear()
+        print("Your Fleet")
+        player_board.display()
+        engage = input("Press enter to activate targetting system")
+
 
 user_attack(t1_board, t2_board)
 # t1_board.attack('b', 10, t2_board)
