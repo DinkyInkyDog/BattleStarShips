@@ -111,9 +111,9 @@ class Board:
                             row += "  X  "
                             something_found = True
                             break
-                        if [letter[index], count] in self.miss:
-                            row += '  *  '
-                            something_found = True
+                    if [letter[index], count] in self.miss:
+                        row += "  *  "
+                        something_found = True
                     if something_found == False:
                         row += "  .  "
                     count += 1
@@ -149,7 +149,7 @@ class Board:
                         break
                 break
         if target_hit == False:
-            self.miss.append([r, c])
+            board_being_attacked.miss.append([r, c])
             print("You missed...")
             
             
@@ -357,7 +357,8 @@ def user_attack(player_board, enemy_board):
     row = str(input("Select a row. ex. d            "))
     column = int(input("Selct a column. ex 8            "))
     player_board.attack(row, column, enemy_board)
-    print(player_board.miss)
     enemy_board.display(True)
 
 user_attack(t1_board, t2_board)
+# t1_board.attack('b', 10, t2_board)
+# t2_board.display(True)
