@@ -84,7 +84,7 @@ class Board:
         for ship in self.fleet:
             if ship.alive == False:
                 dead_ships += 1
-        if dead_ships == 5:
+        if dead_ships >= 5:
             defeated = True
         return defeated
 
@@ -110,8 +110,9 @@ class Board:
 
 class Ship:
     
-    alive = True
+    
     def __init__(self, size, rank = "(A)"):
+        self.alive = True
         self.location = []
         self.hit = []
         self.size = size
@@ -169,9 +170,6 @@ class Ship:
                     for location in range(0, self.size):
                         self.location.append([letter, num])
                         num += 1
-        
-    def selfdestruct(self):
-        self.alive = False
 
     def __repr__(self):
         stats = """Ship Name: {name}
@@ -290,57 +288,76 @@ def ship_assignments(player, ships_list):
         pause = input("press enter to continue")
     clear()
     
-#uncomment before posting.
 
-# ship_assignments(p1_board, p1_ships)
-# print("Fleet as been deployed!")
-# pause = input("Pass the controls to {p} and press enter to continue".format(p=p2_board.name))
-# ship_assignments(p2_board, p2_ships)
-# print("Fleet as been deployed!")
-# print("Both Fleets are ready for battle! Pass controls over to {p1} to start us off.".format(p1= p1_board.name))
-# pause= input("press enter to continue")
-# clear()
+
+ship_assignments(p1_board, p1_ships)
+print("Fleet as been deployed!")
+pause = input("Pass the controls to {p} and press enter to continue".format(p=p2_board.name))
+ship_assignments(p2_board, p2_ships)
+print("Fleet as been deployed!")
+print("Both Fleets are ready for battle! Pass controls over to {p1} to start us off.".format(p1= p1_board.name))
+pause= input("press enter to continue")
+clear()
 
 def user_attack(player_board, enemy_board):
-    run_game = True
-    while run_game == True:
-        print("------------{p}-------------".format(p=player_board.name))
-        print("targetting system active. Select Location.")
-        enemy_board.display(True)
-        row = str(input("Select a row. ex. d            "))
-        column = int(input("Selct a column. ex 8            "))
-        player_board.attack(row, column, enemy_board)
-        enemy_board.display(True)
-        if enemy_board.check_for_defeat == True:
-            print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p1=player_board.name, p2=enemy_board.name))
-            run_game = False
-        print("it is now {p}'s turn.".format(p=enemy_board.name))
-        passed = input("Pass controls to them and hit enter when ready.")
-        clear()
-        print("Your Fleet")
-        enemy_board.display()
-        engage = input("Press enter to activate targetting system")
-        clear()
-        print("------------{p}-------------".format(p=enemy_board.name))
-        print("targetting system active. Select Location.")
-        player_board.display(True)
-        row = str(input("Select a row. ex. d            "))
-        column = int(input("Selct a column. ex 8            "))
-        enemy_board.attack(row, column, player_board)
-        player_board.display(True)
-        if player_board.check_for_defeat == True:
-            print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p2=player_board.name, p1=enemy_board.name))
-            run_game = False
-        print("it is now {p}'s turn.".format(p=player_board.name))
-        passed = input("Pass controls to them and hit enter when ready.")
-        clear()
-        print("Your Fleet")
-        player_board.display()
-        engage = input("Press enter to activate targetting system")
-        clear()
+    print("------------{p}-------------".format(p=player_board.name))
+    print("Your Fleet")
+    player_board.display()
+    engage = input("Press enter to activate targetting system")
+    clear()
+    print("------------{p}-------------".format(p=player_board.name))
+    print("targetting system active. Select Location.")
+    enemy_board.display(True)
+    row = str(input("Select a row. ex. d            "))
+    column = int(input("Selct a column. ex 8            "))
+    clear()
+    player_board.attack(row, column, enemy_board)
+    enemy_board.display(True)
 
-t2_mother.selfdestruct()
-t2_fighter_a.selfdestruct()
-t2_fighter_b.selfdestruct()
-t2_cargo.selfdestruct()
-user_attack(t1_board, t2_board)
+def changeplayers(pl_board, en_board):
+    print("it is now {p}'s turn.".format(p=en_board.name))
+    passed = input("Pass controls to them and hit enter when ready.")
+    clear()
+
+# t2_mother.alive = False
+# t2_fighter_a.alive = False
+# t2_fighter_b.alive = False
+# t2_cargo.alive = False
+# #t2_scout.alive = False
+# run_game = True
+# while run_game == True:
+#     user_attack(t1_board, t2_board)
+#     print(t2_board.check_for_defeat())
+#     if t2_board.check_for_defeat() is True:
+#         print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p1=t1_board.name, p2=t2_board.name))
+#         run_game = False
+#         break
+    
+#     changeplayers(t1_board, t2_board)
+#     user_attack(t2_board, t1_board)
+#     print(t1_board.check_for_defeat())
+#     if t1_board.check_for_defeat() is True:
+#         print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p2=t1_board.name, p1=t2_board.name))
+#         run_game = False
+#         break
+#     changeplayers(t2_board, t1_board)
+
+
+
+run_game = True
+while run_game == True:
+    user_attack(p1_board, p2_board)
+    print(p2_board.check_for_defeat())
+    if p2_board.check_for_defeat() is True:
+        print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p1=p1_board.name, p2=p2_board.name))
+        run_game = False
+        break
+    
+    changeplayers(p1_board, p2_board)
+    user_attack(p2_board, p1_board)
+    print(p1_board.check_for_defeat())
+    if p1_board.check_for_defeat() is True:
+        print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p2=p1_board.name, p1=p2_board.name))
+        run_game = False
+        break
+    changeplayers(p2_board, p1_board)
