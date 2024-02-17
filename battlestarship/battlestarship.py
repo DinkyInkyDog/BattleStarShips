@@ -284,7 +284,7 @@ def ship_assignments(player, ships_list):
             if ship.assign_ship(row, column, player, verticle, up, left) != False:
                 placed_ship = True 
             
-        p1_board.display()
+        player.display()
         pause = input("press enter to continue")
     clear()
     
