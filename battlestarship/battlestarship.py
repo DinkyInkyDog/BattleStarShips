@@ -347,7 +347,7 @@ def changeplayers(pl_board, en_board):
 run_game = True
 while run_game == True:
     user_attack(p1_board, p2_board)
-    print(p2_board.check_for_defeat())
+    #print(p2_board.check_for_defeat())
     if p2_board.check_for_defeat() is True:
         print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p1=p1_board.name, p2=p2_board.name))
         run_game = False
@@ -355,7 +355,7 @@ while run_game == True:
     
     changeplayers(p1_board, p2_board)
     user_attack(p2_board, p1_board)
-    print(p1_board.check_for_defeat())
+    #print(p1_board.check_for_defeat())
     if p1_board.check_for_defeat() is True:
         print("{p1} has won!! All of {p2}'s ships have been destroyed.".format(p2=p1_board.name, p1=p2_board.name))
         run_game = False
