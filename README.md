@@ -1,5 +1,6 @@
-# Portfolio_codecademy
- 
-1. Battle Star Ships
+# Battle Star Ship
+A two player game of battle ship where you place your ships and then fight to the death in this text based game. 
 
-2. Tea Shop Webpage
+# What I Learned
+* Class in Python
+  * The concept of Smart Objects vs Simple Object
